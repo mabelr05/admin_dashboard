@@ -16,9 +16,11 @@ class LinksBar extends StatelessWidget{
         alignment: WrapAlignment.center,
         children: [
           // ignore: avoid_print
-          LinkText( text: 'Facebook', onPressed: () => print('Facebook')),
+          LinkText( text: 'Co-Gobierno Estudiantil ISTL', onPressed: () => print('https://www.facebook.com/profile.php?id=100090590160198')),
         ],
       )
     );
   }
+
+  
 }

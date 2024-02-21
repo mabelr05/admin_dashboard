@@ -26,7 +26,7 @@ class _MenuItemState extends State<MenuItem> {
     @override
     Widget build(BuildContext context){
       return AnimatedContainer(
-        duration: Duration(milliseconds: 250),
+        duration: const Duration(milliseconds: 250),
         //para que muestre un color por defecto si el mause esta encima 
         color: isHovered
         ?Colors.white.withOpacity(0.1)
@@ -36,7 +36,7 @@ class _MenuItemState extends State<MenuItem> {
         child: InkWell(
           onTap: widget.isActive? null: () => widget.onPressed(),
           child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 30, vertical: 10),
+            padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
             child: MouseRegion(
             onEnter: (_) => setState( () => isHovered = true ),
             onExit: (_) => setState( () => isHovered = false ),
@@ -44,7 +44,7 @@ class _MenuItemState extends State<MenuItem> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Icon(widget.icon, color: Colors.white.withOpacity(0.3)),
-                SizedBox(width: 10),
+                const SizedBox(width: 10),
                 Text(
                   widget.text,
                   style:GoogleFonts.roboto(

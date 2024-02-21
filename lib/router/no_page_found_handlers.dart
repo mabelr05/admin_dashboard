@@ -10,7 +10,7 @@ class NoPageFoundHandlers{
 
       Provider.of<SideMenuProvider>(context!, listen: false).setCurrentPageUrl('/01');
 
-      return NoPageFoundView();
+      return const NoPageFoundView();
     }
   );
 }

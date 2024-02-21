@@ -29,7 +29,7 @@ class Categoria {
 
     @override
   String toString() {
-    return 'Categoria: ${this.nombre}';
+    return 'Categoria: $nombre';
   }
 }
 

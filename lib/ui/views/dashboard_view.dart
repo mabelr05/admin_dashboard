@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class DashboardView extends StatelessWidget{
+  const DashboardView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context){
@@ -12,13 +13,13 @@ class DashboardView extends StatelessWidget{
     final user = Provider.of<AuthProvider>(context).user!;
 
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
       child: ListView(
-        physics: ClampingScrollPhysics(),
+        physics: const ClampingScrollPhysics(),
         children: [
           Text('Dashboard View', style: CustomLabels.h1),
 
-          SizedBox(height:10),
+          const SizedBox(height:10),
 
           WhiteCard(
             title: user.nombre,

@@ -1,5 +1,6 @@
 import 'package:admin_dashboard/api/CafeApi.dart';
 import 'package:admin_dashboard/models/http/auth_response.dart';
+import 'package:admin_dashboard/models/usuario.dart';
 import 'package:admin_dashboard/router/router.dart';
 import 'package:admin_dashboard/services/local_storage.dart';
 import 'package:admin_dashboard/services/navigation_service.dart';
@@ -14,7 +15,7 @@ class AuthProvider extends ChangeNotifier {
   Usuario? user;
 
   AuthProvider() {
-    this.isAuthenticated();
+    isAuthenticated();
   }
 
   login(String email, String password) {
@@ -23,7 +24,7 @@ class AuthProvider extends ChangeNotifier {
     CafeApi.post('/auth/login', data).then((json) {
       print(json);
       final authResponse = AuthResponse.fromMap(json);
-      this.user = authResponse.usuario;
+      user = authResponse.usuario;
 
       authStatus = AuthStatus.authenticated;
       LocalStorage.prefs.setString('token', authResponse.token);
@@ -44,7 +45,7 @@ class AuthProvider extends ChangeNotifier {
     CafeApi.post("/usuarios", data).then((json) {
       //print('UserData: ' + json);
       final authResponse = AuthResponse.fromMap(json);
-      this.user = authResponse.usuario;
+      user = authResponse.usuario;
 
       authStatus = AuthStatus.authenticated;
       LocalStorage.prefs.setString('token', authResponse.token);
@@ -77,7 +78,7 @@ class AuthProvider extends ChangeNotifier {
       final authResponse = AuthResponse.fromMap(resp);
       LocalStorage.prefs.setString('token', authResponse.token);
 
-      this.user = authResponse.usuario;
+      user = authResponse.usuario;
       authStatus = AuthStatus.authenticated;
       notifyListeners();
       return true;

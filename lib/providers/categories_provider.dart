@@ -11,9 +11,9 @@ class CategoriesProvider extends ChangeNotifier{
     final resp = await CafeApi.httpGet('/categorias');
     final categoriesResp = CategoriesResponse.fromMap(resp);
 
-    this.categorias = [...categoriesResp.categorias];
+    categorias = [...categoriesResp.categorias];
 
-    print(this.categorias);
+    print(categorias);
 
     notifyListeners();
   }
@@ -33,8 +33,7 @@ class CategoriesProvider extends ChangeNotifier{
       notifyListeners();
 
     }catch (e) {
-      print(e);
-      print(' Error al crear la categoria');
+      throw 'Error al crear categoria';
     }
   }
 
@@ -48,7 +47,7 @@ class CategoriesProvider extends ChangeNotifier{
 
       await CafeApi.put('/categorias/$id', data);
 
-      this.categorias = this.categorias.map(
+      categorias = categorias.map(
         (categoria) {
           if (categoria.id != id) return categoria;
 
@@ -56,6 +55,21 @@ class CategoriesProvider extends ChangeNotifier{
           return categoria;
         }
       ).toList();
+      notifyListeners();
+
+    }catch (e) {
+      throw 'Error al crear categoria';
+    }
+  }
+
+  Future deleteCategoria(String id) async{
+
+    try{
+
+      await CafeApi.delete('/categorias/$id', {});
+
+      categorias.removeWhere((categoria) => categoria.id == id);
+        
       notifyListeners();
 
     }catch (e) {

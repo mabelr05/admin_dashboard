@@ -5,13 +5,13 @@ class Logo extends StatelessWidget{
   @override
   Widget build (BuildContext context){
     return Container(
-      padding: EdgeInsets.only(top:30),
+      padding: const EdgeInsets.only(top:30),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           //Icono del admin
-          Icon(Icons.account_circle, color: Color.fromARGB(255, 255, 255, 255)),
-          SizedBox (width: 10),
+          const Icon(Icons.account_circle, color: Color.fromARGB(255, 255, 255, 255)),
+          const SizedBox (width: 10),
           Text(
             'Admin',
             style: GoogleFonts.montserratAlternates(

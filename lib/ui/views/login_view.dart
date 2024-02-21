@@ -11,6 +11,8 @@ import 'package:admin_dashboard/ui/buttons/link_text.dart';
 import 'package:provider/provider.dart';
 
 class LoginView extends StatelessWidget {
+  const LoginView({Key? key}) : super(key: key);
+
   
   @override
   Widget build(BuildContext context) {
@@ -45,7 +47,7 @@ class LoginView extends StatelessWidget {
                       return null;
                     },
                     onChanged: ( value ) => loginFormProvider.email = value,
-                    style: const TextStyle( color: Colors.white ),
+                    style: const TextStyle( color: Colors.black ),
                     decoration: CustomInputs.loginInputDecoration(
                       hint: 'Ingrese su correo',
                       label: 'Email',
@@ -68,7 +70,7 @@ class LoginView extends StatelessWidget {
       
                     },
                     obscureText: true,
-                    style: const TextStyle( color: Colors.white ),
+                    style: const TextStyle( color: Colors.black ),
                     decoration: CustomInputs.loginInputDecoration(
                       hint: '*********',
                       label: 'Contraseña',
@@ -88,7 +90,7 @@ class LoginView extends StatelessWidget {
                   LinkText(
                     text: 'Nueva cuenta',
                     onPressed: () {
-                      Navigator.pushNamed( context, Flurorouter.registerRoute );
+                      Navigator.pushReplacementNamed( context, Flurorouter.registerRoute );
                     },
                   )
       
@@ -104,8 +106,9 @@ class LoginView extends StatelessWidget {
 
   void onFormSubmit(LoginFormProvider loginFormProvider, AuthProvider authProvider){
     final isValid = loginFormProvider.validateForm();
-    if (isValid)
+    if (isValid) {
       authProvider.login(loginFormProvider.email, loginFormProvider.password);
+    }
 
   }
 

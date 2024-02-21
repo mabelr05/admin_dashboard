@@ -17,6 +17,10 @@ class Flurorouter{
   static String publicationsRoute = '/dashboard/publications';
   static String blankRoute = '/dashboard/blank';
   static String categoriesRoute = '/dashboard/categories';
+  
+  static String usersRoute = '/dashboard/users';
+  static String userRoute = '/dashboard/users/:uid';
+
   static void configureRoutes(){
     //Auth Routes
     router.define(rootRoute, handler: AdminHandlers.login, transitionType: TransitionType.none);
@@ -26,7 +30,11 @@ class Flurorouter{
     //Dashboard
     router.define(dashboardRoute, handler: DashboardHandlers.dashboard, transitionType:TransitionType.fadeIn);
     router.define(publicationsRoute, handler: DashboardHandlers.publications, transitionType:TransitionType.fadeIn);
-    router.define(categoriesRoute, handler: DashboardHandlers.categories, transitionType:TransitionType.fadeIn);
+    router.define( categoriesRoute, handler: DashboardHandlers.categories, transitionType: TransitionType.fadeIn);
+    
+    //users
+    router.define(usersRoute, handler: DashboardHandlers.users, transitionType:TransitionType.fadeIn);
+     router.define(userRoute, handler: DashboardHandlers.user, transitionType:TransitionType.fadeIn);
 
     //01
     router.notFoundHandler = NoPageFoundHandlers.noPageFound;

@@ -11,6 +11,8 @@ import 'package:admin_dashboard/ui/buttons/link_text.dart';
 import 'package:provider/provider.dart';
 
 class RegisterView extends StatelessWidget {
+  const RegisterView({Key? key}) : super(key: key);
+
   
   @override
   Widget build(BuildContext context) {
@@ -39,7 +41,7 @@ class RegisterView extends StatelessWidget {
                   if (value == null || value.isEmpty) return 'El nombre es obligatorio';
                   return null;
                   },
-                  style: const TextStyle( color: Colors.white ),
+                  style: const TextStyle( color: Color.fromARGB(255, 66, 66, 66) ),
                   decoration: CustomInputs.loginInputDecoration(
                     hint: 'Ingrese su nombre',
                     label: 'Nombre',
@@ -57,7 +59,7 @@ class RegisterView extends StatelessWidget {
                       if( !EmailValidator.validate(value?? '') ) return 'Email no valido';
                       return null;
                     },
-                  style: const TextStyle( color: Colors.white ),
+                  style: const TextStyle( color: Color.fromARGB(255, 66, 66, 66) ),
                   decoration: CustomInputs.loginInputDecoration(
                     hint: 'Ingrese su correo',
                     label: 'Email',
@@ -78,7 +80,7 @@ class RegisterView extends StatelessWidget {
                       return null; //valido
                     },
                   obscureText: true,
-                  style: const TextStyle( color: Colors.white ),
+                  style: const TextStyle(color: Color.fromARGB(255, 66, 66, 66) ),
                   decoration: CustomInputs.loginInputDecoration(
                     hint: '*********',
                     label: 'Contraseña',
@@ -86,14 +88,14 @@ class RegisterView extends StatelessWidget {
                   ),
                 ),
                 
-                SizedBox( height: 20 ),
+                const SizedBox( height: 20 ),
                 CustomOutlinedButton(
                   onPressed: () {
                     final validForm =  registerFormProvider.validateForm();
                     if (!validForm) return;
-                    print('Email: '+registerFormProvider.email);
-                    print('PassWord: '+registerFormProvider.password);
-                    print('Name: '+registerFormProvider.name);
+                    print('Email: ${registerFormProvider.email}');
+                    print('PassWord: ${registerFormProvider.password}');
+                    print('Name: ${registerFormProvider.name}');
 
                     final authProvider = Provider.of<AuthProvider>(context, listen: false);
                     authProvider.register(
@@ -110,7 +112,7 @@ class RegisterView extends StatelessWidget {
                 LinkText(
                   text: 'Ir al login',
                   onPressed: () {
-                    Navigator.pushNamed(context, Flurorouter.loginRoute );
+                    Navigator.pushReplacementNamed(context, Flurorouter.loginRoute );
                   },
                 )
 

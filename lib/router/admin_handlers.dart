@@ -13,10 +13,11 @@ class AdminHandlers{
       //Si no esta autentificado sale el login view
       final authProvider = Provider.of<AuthProvider>(context!);
 
-      if(authProvider.authStatus == AuthStatus.notAuthenticated)
-        return LoginView();
-      else
-        return DashboardView();
+      if(authProvider.authStatus == AuthStatus.notAuthenticated) {
+        return const LoginView();
+      } else {
+        return  DashboardView();
+      }
     }
   );
 
@@ -26,10 +27,11 @@ class AdminHandlers{
 
       final authProvider = Provider.of<AuthProvider>(context!);
 
-      if(authProvider.authStatus == AuthStatus.notAuthenticated)
-        return RegisterView();
-      else
-        return DashboardView();
+      if(authProvider.authStatus == AuthStatus.notAuthenticated) {
+        return const RegisterView();
+      } else {
+        return  DashboardView();
+      }
     }
   );
 }

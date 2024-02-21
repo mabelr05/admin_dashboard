@@ -17,9 +17,9 @@ class WhiteCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width:width != null? width : null ,
-      margin: EdgeInsets.all(8),
-      padding: EdgeInsets.all(10),
+      width:width ,
+      margin: const EdgeInsets.all(8),
+      padding: const EdgeInsets.all(10),
       decoration: buildBoxDecoration(),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -37,7 +37,7 @@ class WhiteCard extends StatelessWidget {
               ),
             ),
           ),
-          Divider()
+          const Divider()
         ],
 
           child

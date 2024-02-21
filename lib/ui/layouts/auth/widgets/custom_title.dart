@@ -25,7 +25,7 @@ class CustomTitle extends StatelessWidget {
             'Bienvenidos',
              style: GoogleFonts.montserratAlternates(
                fontSize: 60,
-                color: Colors.white,
+                color: const Color.fromARGB(255, 0, 0, 0),
                 fontWeight: FontWeight.bold
               ),
             ),

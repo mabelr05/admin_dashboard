@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:admin_dashboard/ui/layouts/auth/widgets/background_admicon.dart';
 import 'package:admin_dashboard/ui/layouts/auth/widgets/custom_title.dart';
 import 'package:flutter/material.dart';
@@ -98,14 +100,14 @@ class _DesktopBody extends StatelessWidget {
         // Background
         // Flexible
         //Admicon Background
-        Expanded(child: BackgroundAdmicon()),
+        const Expanded(child: BackgroundAdmicon()),
 
         //View Container
         //Estatico
         Container(
           width: 600,
           height: double.infinity,
-          color: Colors.black,
+          color: const Color.fromARGB(255, 223, 248, 249),
           child: Column(
             children: [
               const SizedBox(height: 20),

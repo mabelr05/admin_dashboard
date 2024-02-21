@@ -12,7 +12,7 @@ class Sidebar extends StatelessWidget {
   
   
   void navigateTo( String routeName){
-    NavigationService.navigateTo( routeName);
+    NavigationService.replaceTo( routeName);
     SideMenuProvider.closeMenu();
   }
   
@@ -26,20 +26,21 @@ class Sidebar extends StatelessWidget {
       height: double.infinity,
       decoration: buildBoxDecoration(),
       child: ListView(
-        physics: ClampingScrollPhysics(),
+        physics: const ClampingScrollPhysics(),
         children: [
 
           Logo(),
 
-          SizedBox(height: 50),
+          const SizedBox(height: 50),
 
           //texto debajo del admin
-          TextSeparator( text: 'main'),
+          const TextSeparator( text: 'main'),
 
           MenuItem(
             text: 'Usuarios',
             icon: Icons.people_alt_outlined ,
-            onPressed: () => print('Dashboard'),
+            onPressed: () => navigateTo(Flurorouter.usersRoute),
+            isActive: sideMenuProvider.currentPage == Flurorouter.usersRoute,
           ),
 
           MenuItem(
@@ -59,9 +60,9 @@ class Sidebar extends StatelessWidget {
             isActive: sideMenuProvider.currentPage == Flurorouter.categoriesRoute,
             ),
 
-            SizedBox(height: 30),
+            const SizedBox(height: 30),
 
-            TextSeparator( text: 'UI Elements'),
+            const TextSeparator( text: 'UI Elements'),
             MenuItem(text: 'Analytic',icon: Icons.show_chart_outlined ,onPressed: (){},),
             
             MenuItem(
@@ -87,7 +88,7 @@ class Sidebar extends StatelessWidget {
   }
 
   //Decoracion del menu
-  BoxDecoration buildBoxDecoration() => BoxDecoration(
+  BoxDecoration buildBoxDecoration() => const BoxDecoration(
   gradient: LinearGradient(
     colors: [
       Color.fromARGB(255, 3, 65, 62),

@@ -22,9 +22,9 @@ class _DashboardLayoutState extends State<DashboardLayout> with SingleTickerProv
   void initState() {
     super.initState();
 
-    SideMenuProvider.menuController = new AnimationController(
+    SideMenuProvider.menuController = AnimationController(
       vsync: this, 
-      duration: Duration(milliseconds: 300 )
+      duration: const Duration(milliseconds: 300 )
     );
   }
 
@@ -34,7 +34,7 @@ class _DashboardLayoutState extends State<DashboardLayout> with SingleTickerProv
     final size = MediaQuery.of(context).size;
 
     return Scaffold(
-      backgroundColor: Color(0xffEDF1F2 ),
+      backgroundColor: const Color(0xffEDF1F2 ),
       body: Stack(
         children: [
           Row(
@@ -43,13 +43,13 @@ class _DashboardLayoutState extends State<DashboardLayout> with SingleTickerProv
 
           //TODO: esto depende si es maas de 700 px
          if(size.width >= 700)
-          Sidebar(),
+           Sidebar(),
 
           Expanded(
             child: Column(
               children: [
                 //Navbar
-                Navbar(),
+                const Navbar(),
 
                 //View
                 Expanded(
@@ -86,7 +86,7 @@ class _DashboardLayoutState extends State<DashboardLayout> with SingleTickerProv
 
           Transform.translate(
             offset: Offset( SideMenuProvider.movement.value,0),
-            child:Sidebar(),
+            child: Sidebar(),
           )
         ],
       ))

@@ -1,68 +1,69 @@
 import 'package:admin_dashboard/models/categoria.dart';
+import 'package:admin_dashboard/providers/categories_provider.dart';
+import 'package:admin_dashboard/ui/modals/categoria_modal.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-class CategoriesDTS extends DataTableSource{
-
+class CategoriesDTS extends DataTableSource {
   final List<Categoria> categorias;
-  final BuildContext contex;
+  final BuildContext context;
 
-  CategoriesDTS(this.categorias, this.contex);
+  CategoriesDTS(this.categorias, this.context);
 
   @override
-  DataRow getRow(int index){
+  DataRow getRow(int index) {
+    final categoria = categorias[index];
 
-    final categoria = this.categorias[index];
+    return DataRow.byIndex(index: index, cells: [
+      DataCell(Text(categoria.id)),
+      DataCell(Text(categoria.nombre)),
+      DataCell(Row(
+        children: [
+          IconButton(
+              icon: const Icon(Icons.edit_outlined),
+              onPressed: () {
+                showModalBottomSheet(
+                  backgroundColor: Colors.transparent,
+                  context: context,
+                  builder: (_) => CategoriaModal(
+                    categoria: categoria,
+                  ),
+                );
+              }),
+          IconButton(
+              icon: Icon(Icons.delete_outline,
+                  color: Colors.red.withOpacity(0.8)),
+              onPressed: () {
+                final dialog = AlertDialog(
+                  title: const Text('Seguro que quieres borrarlo?'),
+                  content: Text('Borrar definitivamente ${categoria.nombre}?'),
+                  actions: [
+                    TextButton(
+                      child: const Text('No'),
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
+                    ),
+                    TextButton(
+                      child: const Text('Si, borrar'),
+                      onPressed: () async {
+                        await Provider.of<CategoriesProvider>(context,
+                                listen: false)
+                            .deleteCategoria(categoria.id);
 
-    return DataRow.byIndex(
-      index: index,
-      cells: [
-        DataCell( Text( categoria.id)),
-        DataCell( Text( categoria.nombre)),
-        DataCell(
-          Row(
-            children: [
-              IconButton(
-                icon: Icon(Icons.edit_outlined),
-                onPressed: () {
-                  print('editando: $categoria');
-                }
+                        Navigator.of(context).pop();
+                      },
+                    ),
+                  ],
+                );
 
-              ),
-              IconButton(
-                icon: Icon (Icons.delete_outline, color: Colors.red.withOpacity(0.8)),
-                onPressed: () {
-                  
-                  final dialog = AlertDialog(
-                    title: Text('Seguro que quieres borrarlo?'),
-                    content: Text('Borrar definitivamente ${ categoria.nombre}?'),
-                    actions: [
-                      TextButton(
-                        child: Text('No'),
-                        onPressed: () {
-                          Navigator.of(contex).pop();
-                        },
-                        ),
-                        TextButton(
-                          child: Text('Si, borrar'),
-                          onPressed: () {
-                            Navigator.of(contex).pop();
-                          },
-                          )
-                    ],
-                  );
-                  
-                  showDialog(
-                    context: contex, 
-                    builder: (_) => dialog);
+                showDialog(context: context, builder: (_) => dialog);
+              }),
+        ],
+      )),
+    ]);
+  }
 
-                }
-              ),
-            ],
-          ) 
-        ),
-      ]
-    );
-  }              
   @override
   bool get isRowCountApproximate => false;
 
@@ -71,6 +72,4 @@ class CategoriesDTS extends DataTableSource{
 
   @override
   int get selectedRowCount => 0;
-  
-
 }

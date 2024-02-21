@@ -2,6 +2,8 @@ import 'package:admin_dashboard/ui/inputs/custom_inputs.dart';
 import 'package:flutter/material.dart';
 
 class SearchText extends StatelessWidget {
+  const SearchText({Key? key}) : super(key: key);
+
  
   @override
   Widget build(BuildContext context) {
