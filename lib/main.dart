@@ -15,10 +15,12 @@ void main() async {
   CafeApi.configureDio();
 
   Flurorouter.configureRoutes();
-  runApp(AppState());
+  runApp(const AppState());
 }
 
 class AppState extends StatelessWidget {
+  const AppState({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
@@ -29,12 +31,14 @@ class AppState extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => UsersProvider()),
         ChangeNotifierProvider(create: (_) => UserFormProvider()),
       ],
-      child: MyApp(),
+      child: const MyApp(),
     );
   }
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -47,8 +51,9 @@ class MyApp extends StatelessWidget {
       builder: (context, child) {
         final authProvider = Provider.of<AuthProvider>(context);
 
-        if (authProvider.authStatus == AuthStatus.checking)
-          return SplashLayout();
+        if (authProvider.authStatus == AuthStatus.checking) {
+          return const SplashLayout();
+        }
 
         if (authProvider.authStatus == AuthStatus.authenticated) {
           return DashboardLayout(
@@ -67,9 +72,9 @@ class MyApp extends StatelessWidget {
         //print (LocalStorage.prefs.getString('token'));
       },
       theme: ThemeData.light().copyWith(
-        scrollbarTheme: ScrollbarThemeData().copyWith(
+        scrollbarTheme: const ScrollbarThemeData().copyWith(
           thumbColor: MaterialStateProperty.all(
-            Color.fromARGB(255, 215, 213, 213),
+            const Color.fromARGB(255, 215, 213, 213),
           ),
         ),
       ),

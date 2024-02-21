@@ -43,7 +43,7 @@ class _DashboardLayoutState extends State<DashboardLayout> with SingleTickerProv
 
           //TODO: esto depende si es maas de 700 px
          if(size.width >= 700)
-           Sidebar(),
+           const Sidebar(),
 
           Expanded(
             child: Column(
@@ -86,7 +86,7 @@ class _DashboardLayoutState extends State<DashboardLayout> with SingleTickerProv
 
           Transform.translate(
             offset: Offset( SideMenuProvider.movement.value,0),
-            child: Sidebar(),
+            child: const Sidebar(),
           )
         ],
       ))

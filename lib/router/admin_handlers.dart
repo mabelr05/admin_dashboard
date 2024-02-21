@@ -16,7 +16,7 @@ class AdminHandlers{
       if(authProvider.authStatus == AuthStatus.notAuthenticated) {
         return const LoginView();
       } else {
-        return  DashboardView();
+        return  const DashboardView();
       }
     }
   );
@@ -30,7 +30,7 @@ class AdminHandlers{
       if(authProvider.authStatus == AuthStatus.notAuthenticated) {
         return const RegisterView();
       } else {
-        return  DashboardView();
+        return  const DashboardView();
       }
     }
   );

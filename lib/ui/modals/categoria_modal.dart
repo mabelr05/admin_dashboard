@@ -34,7 +34,7 @@ class CategoriaModalState extends State<CategoriaModal> {
         Provider.of<CategoriesProvider>(context, listen: false);
 
     return Container(
-      padding: EdgeInsets.all(20),
+      padding: const EdgeInsets.all(20),
       height: 500,
       width: MediaQuery.of(context).size.width, // expanded
       decoration: buildBoxDecoration(),
@@ -46,7 +46,7 @@ class CategoriaModalState extends State<CategoriaModal> {
               Text(widget.categoria?.nombre ?? 'Nueva categoría',
                   style: CustomLabels.h1.copyWith(color: Colors.white)),
               IconButton(
-                  icon: Icon(
+                  icon: const Icon(
                     Icons.close,
                     color: Colors.white,
                   ),
@@ -54,7 +54,7 @@ class CategoriaModalState extends State<CategoriaModal> {
             ],
           ),
           Divider(color: Colors.white.withOpacity(0.3)),
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           TextFormField(
             initialValue: widget.categoria?.nombre ?? '',
             onChanged: (value) => nombre = value,
@@ -62,10 +62,10 @@ class CategoriaModalState extends State<CategoriaModal> {
                 hint: 'Nombre de la categoría',
                 label: 'Categoría',
                 icon: Icons.new_releases_outlined),
-            style: TextStyle(color: Colors.white),
+            style: const TextStyle(color: Colors.white),
           ),
           Container(
-            margin: EdgeInsets.only(top: 30),
+            margin: const EdgeInsets.only(top: 30),
             alignment: Alignment.center,
             child: CustomOutlinedButton(
               onPressed: () async {
@@ -96,7 +96,7 @@ class CategoriaModalState extends State<CategoriaModal> {
     );
   }
 
-  BoxDecoration buildBoxDecoration() => BoxDecoration(
+  BoxDecoration buildBoxDecoration() => const BoxDecoration(
       borderRadius: BorderRadius.only(
           topLeft: Radius.circular(20), topRight: Radius.circular(20)),
       color: Color(0xff0F2041),

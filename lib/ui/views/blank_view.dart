@@ -5,6 +5,8 @@ import 'package:admin_dashboard/ui/labels/custom_labels.dart';
 
 
 class BlankView extends StatelessWidget{
+  const BlankView({Key? key}) : super(key: key);
+
 
   @override
   Widget build(BuildContext context){
@@ -19,7 +21,7 @@ class BlankView extends StatelessWidget{
 
           const WhiteCard(
             title: 'Blank Page',
-            child: const Text ('Hola Mundo')
+            child: Text ('Hola Mundo')
           )
           
         ],

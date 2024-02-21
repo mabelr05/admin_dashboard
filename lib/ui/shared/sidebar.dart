@@ -9,6 +9,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class Sidebar extends StatelessWidget {
+  const Sidebar({Key? key}) : super(key: key);
+
   
   
   void navigateTo( String routeName){
@@ -29,7 +31,7 @@ class Sidebar extends StatelessWidget {
         physics: const ClampingScrollPhysics(),
         children: [
 
-          Logo(),
+          const Logo(),
 
           const SizedBox(height: 50),
 

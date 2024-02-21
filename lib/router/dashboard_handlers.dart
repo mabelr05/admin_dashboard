@@ -18,7 +18,7 @@ class DashboardHandlers {
         .setCurrentPageUrl(Flurorouter.dashboardRoute);
 
     if (authProvider.authStatus == AuthStatus.authenticated) {
-      return DashboardView();
+      return const DashboardView();
     } else {
       return const LoginView();
     }
