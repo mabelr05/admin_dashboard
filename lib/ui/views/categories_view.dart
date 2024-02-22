@@ -51,23 +51,23 @@ class _CategoriesViewState extends State<CategoriesView> {
                 rowsPerPage: _rowsPerPage,
                 actions: [
                   ElevatedButton(
-  onPressed: () {
-    showModalBottomSheet(
-      backgroundColor: Colors.transparent,
-      context: context,
-      builder: (context) => const CategoriaModal(),
-    );
-  },
-  style: ElevatedButton.styleFrom(
-    backgroundColor: Colors.teal, // Color del botón
-  ),
-  child: const Row(
-    children: [
-      Text('Crear'),
-      Icon(Icons.add_outlined),
-    ],
-  ),
-)
+                    onPressed: () {
+                      showModalBottomSheet(
+                        backgroundColor: Colors.transparent,
+                        context: context,
+                        builder: (context) => const CategoriaModal(),
+                      );
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.teal, // Color del botón
+                    ),
+                    child: const Row(
+                      children: [
+                        Text('Crear'),
+                        Icon(Icons.add_outlined),
+                      ],
+                    ),
+                  )
                 ],
               )
             ],

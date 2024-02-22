@@ -1,5 +1,6 @@
 // ignore_for_file: avoid_print
 
+import 'package:admin_dashboard/ui/app_colors.dart';
 import 'package:admin_dashboard/ui/layouts/auth/widgets/background_admicon.dart';
 import 'package:admin_dashboard/ui/layouts/auth/widgets/custom_title.dart';
 import 'package:flutter/material.dart';
@@ -53,7 +54,7 @@ class AuthLayout extends StatelessWidget{
     Widget build(BuildContext context){
       print("this is mobileBody");
       return Container(
-        color: Colors.black,
+        color: const Color.fromARGB(255, 0, 0, 0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
@@ -93,7 +94,7 @@ class _DesktopBody extends StatelessWidget {
     return Container(
       width: size.width,
       height: size.height*0.95,
-      color: Colors.black,
+      color: AppColor.kPrimary,
       child: Row(
         children: [
 
@@ -107,7 +108,7 @@ class _DesktopBody extends StatelessWidget {
         Container(
           width: 600,
           height: double.infinity,
-          color: const Color.fromARGB(255, 223, 248, 249),
+          color: Colors.white,
           child: Column(
             children: [
               const SizedBox(height: 20),

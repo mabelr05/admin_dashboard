@@ -16,7 +16,7 @@ Widget build (BuildContext context) {
               padding: EdgeInsets.symmetric(horizontal:30),
               child: Image(
                 image: AssetImage('admicon.png'),
-                width: 400,
+                width: 800,
               ),
             ),
           ),
@@ -26,10 +26,7 @@ Widget build (BuildContext context) {
   }
  BoxDecoration buildBoxDecoration() {
   return const BoxDecoration(
-    image: DecorationImage(
-      image: AssetImage('img.jpg'),
-      fit: BoxFit.cover
-    )
+    
   );
  }
 }

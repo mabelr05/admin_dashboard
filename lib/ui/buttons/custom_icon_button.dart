@@ -13,7 +13,7 @@ class CustomIconButton extends StatelessWidget{
     required this.onPressed,
     required this.text,
     required this.icon,
-    this.color = Colors.teal,
+    this.color = Colors.indigo,
     this.isFilled = false,
   }) : super(key: key);
 

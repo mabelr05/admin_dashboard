@@ -36,7 +36,7 @@ class _LinkTextState extends State<LinkText> {
         widget.text,
         style: TextStyle(
           fontSize: 16,
-          color: Colors.grey[700],
+          color: const Color.fromARGB(255, 102, 123, 242),
           //senala cuando esta el mouse encima
           decoration: isHover ? TextDecoration.underline : TextDecoration.none
         ),
