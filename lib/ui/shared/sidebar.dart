@@ -66,6 +66,11 @@ class Sidebar extends StatelessWidget {
             isActive: sideMenuProvider.currentPage == Flurorouter.pagosRoute,
             ),
 
+            MenuItem(text: 'Ingresos',
+            icon: Icons.attach_money_outlined,
+            onPressed: () => navigateTo(Flurorouter.ingresosRoute),
+            isActive: sideMenuProvider.currentPage == Flurorouter.ingresosRoute,
+            ),
 
           MenuItem(
             text: 'Carreras',

@@ -1,16 +1,18 @@
-import 'package:admin_dashboard/providers/categories_provider.dart';
-import 'package:admin_dashboard/providers/posts_provider.dart';
-import 'package:admin_dashboard/services/notifications_service.dart';
+import 'dart:convert';
+import 'dart:typed_data';
 import 'package:admin_dashboard/ui/buttons/custom_outlined_button.dart';
-import 'package:admin_dashboard/ui/inputs/custom_inputs.dart';
 import 'package:admin_dashboard/ui/labels/custom_labels.dart';
+import 'package:http/http.dart' as http;
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+
+import '../../providers/posts_provider.dart';
+import '../inputs/custom_inputs.dart';
+
 class PostModal extends StatefulWidget {
-  const PostModal({
-    Key? key,
-  }) : super(key: key);
+  const PostModal({Key? key}) : super(key: key);
 
   @override
   PostModalState createState() => PostModalState();
@@ -20,21 +22,17 @@ class PostModalState extends State<PostModal> {
   String titulo = '';
   String descripcion = '';
   String? id;
+  String img = ""; // Variable para almacenar el nombre del archivo de imagen seleccionado
 
   @override
   Widget build(BuildContext context) {
-    final postProvider =
-        Provider.of<PostsProvider>(context, listen: false);
-
+    final postProvider = Provider.of<PostsProvider>(context, listen: false);
     // Get screen width
     final screenWidth = MediaQuery.of(context).size.width;
 
     return Expanded(
-      //padding: const EdgeInsets.all(20),
-      //height: 700,
-      //width: screenWidth * 0.8, // Set width to 80% of screen width
-      //decoration: buildBoxDecoration(),
-      child: Container(decoration: buildBoxDecoration(),
+      child: Container(
+        decoration: buildBoxDecoration(),
         child: Column(
           children: [
             Row(
@@ -43,7 +41,7 @@ class PostModalState extends State<PostModal> {
                 Text('Nueva Publicación',
                     style: CustomLabels.h1.copyWith(color: Colors.white)),
                 IconButton(
-                    icon: const Icon(
+                    icon: Icon(
                       Icons.close,
                       color: Colors.white,
                     ),
@@ -51,22 +49,50 @@ class PostModalState extends State<PostModal> {
               ],
             ),
             Divider(color: Colors.white.withOpacity(0.3)),
-            const SizedBox(height: 20),
+            SizedBox(height: 20),
             Column(
               children: [
-                Image.asset(
-                  'assets/no-image.jpg',
-                  width: 100,
-                  height: 100,
+                GestureDetector(
+                  onTap: () async {
+                    // Utilizar FilePicker para seleccionar un archivo
+                    FilePickerResult? result =
+                        await FilePicker.platform.pickFiles(
+                      type: FileType.custom,
+                      allowedExtensions: ['jpg', 'jpeg', 'png'],
+                      allowMultiple: false,
+                    );
+                    
+                    if (result != null && result.files.isNotEmpty) {
+                      // Guardar el nombre del archivo seleccionado en la variable 'img'
+                      img = result.files.first.name!;
+                      setState(() {}); // Actualizar el estado para reflejar el cambio en la imagen
+                    }
+                  },
+                  child: Container(
+                    width: 100,
+                    height: 100,
+                    child: img.isNotEmpty
+                        ? Image.network(
+                            'https://backend-mogodb.onrender.com/api/uploads/$img',
+                            width: 100,
+                            height: 100,
+                            fit: BoxFit.cover,
+                          )
+                        : Image.asset(
+                            'assets/no-image.jpg',
+                            width: 100,
+                            height: 100,
+                          ),
+                  ),
                 ),
-                const SizedBox(height: 20), // Add spacing between image and text fields
+                SizedBox(height: 20),
                 TextFormField(
                   onChanged: (value) => titulo = value,
                   decoration: CustomInputs.formInputDecoration(
                       hint: 'Titulo del Post',
                       label: 'Titulo',
                       icon: Icons.new_releases_outlined),
-                  style: const TextStyle(color: Colors.white),
+                  style: TextStyle(color: Colors.white),
                 ),
                 TextFormField(
                   onChanged: (value) => descripcion = value,
@@ -74,11 +100,11 @@ class PostModalState extends State<PostModal> {
                       hint: 'Descripción del Post',
                       label: 'Descripción',
                       icon: Icons.new_releases_outlined),
-                  style: const TextStyle(color: Colors.white),
+                  style: TextStyle(color: Colors.white),
                 ),
               ],
             ),
-            const SizedBox(height: 20), // Add spacing between text fields and button
+            SizedBox(height: 20),
             Container(
               alignment: Alignment.center,
               child: CustomOutlinedButton(
@@ -86,19 +112,19 @@ class PostModalState extends State<PostModal> {
                   try {
                     if (id == null) {
                       // Crear
-                      await postProvider.newPost(titulo, descripcion,null);
-                      NotificationsService.showSnackbar('$titulo creado!');
+                      await postProvider.newPost(titulo, descripcion, img);
+                      //NotificationsService.showSnackbar('$titulo creado!');
                     } else {
                       // Actualizar
                       await postProvider.updatePost(id!, titulo);
-                      NotificationsService.showSnackbar('$titulo Actualizado!');
+                      //NotificationsService.showSnackbar('$titulo Actualizado!');
                     }
-        
+
                     Navigator.of(context).pop();
                   } catch (e) {
                     Navigator.of(context).pop();
-                    NotificationsService.showSnackbarError(
-                        'No se pudo guardar la categoría');
+                    //NotificationsService.showSnackbarError(
+                        'No se pudo guardar la categoría';
                   }
                 },
                 text: 'Guardar',
