@@ -1,3 +1,5 @@
+import 'package:admin_dashboard/providers/monto_provider.dart';
+import 'package:admin_dashboard/providers/posts_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:admin_dashboard/api/CafeApi.dart';
@@ -28,6 +30,8 @@ class AppState extends StatelessWidget {
         ChangeNotifierProvider(lazy: false, create: (_) => AuthProvider()),
         ChangeNotifierProvider(lazy: false, create: (_) => SideMenuProvider()),
         ChangeNotifierProvider(create: (_) => CategoriesProvider()),
+        ChangeNotifierProvider(create: (_) => PostsProvider()),
+        ChangeNotifierProvider(create: (_) => MontosProvider()),
         ChangeNotifierProvider(create: (_) => UsersProvider()),
         ChangeNotifierProvider(create: (_) => UserFormProvider()),
       ],
@@ -71,7 +75,7 @@ class MyApp extends StatelessWidget {
         // print('Token:');
         //print (LocalStorage.prefs.getString('token'));
       },
-      theme: ThemeData.light().copyWith(
+      theme: ThemeData.light(useMaterial3: true).copyWith(
         scrollbarTheme: const ScrollbarThemeData().copyWith(
           thumbColor: MaterialStateProperty.all(
             const Color.fromARGB(255, 215, 213, 213),

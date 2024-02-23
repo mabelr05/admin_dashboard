@@ -1,31 +1,30 @@
 import 'package:admin_dashboard/datatables/categories_datasource.dart';
-import 'package:admin_dashboard/providers/categories_provider.dart';
+import 'package:admin_dashboard/providers/pagos_provider.dart';
 import 'package:admin_dashboard/ui/modals/categoria_modal.dart';
 import 'package:flutter/material.dart';
 import 'package:admin_dashboard/ui/labels/custom_labels.dart';
 import 'package:provider/provider.dart';
 
-class CategoriesView extends StatefulWidget {
-  const CategoriesView({Key? key}) : super(key: key);
+class PagosView extends StatefulWidget {
+  const PagosView({Key? key}) : super(key: key);
 
   @override
-  _CategoriesViewState createState() => _CategoriesViewState();
+  _PagosViewState createState() => _PagosViewState();
 }
 
-class _CategoriesViewState extends State<CategoriesView> {
+class _PagosViewState extends State<PagosView> {
   int _rowsPerPage = PaginatedDataTable.defaultRowsPerPage;
 
   @override
   void initState() {
     super.initState();
 
-    Provider.of<CategoriesProvider>(context, listen: false).getCategories();
+    Provider.of<PagosProvider>(context, listen: false).getCategories();
   }
 
   @override
   Widget build(BuildContext context) {
-    final categorias = Provider.of<CategoriesProvider>(context).categorias;
-    //print(categorias);
+    final pagos = Provider.of<PagosProvider>(context).categorias;
 
     return Builder(
       builder: (context) {
@@ -34,7 +33,7 @@ class _CategoriesViewState extends State<CategoriesView> {
           child: ListView(
             physics: const ClampingScrollPhysics(),
             children: [
-              Text('Carreras', style: CustomLabels.h1),
+              Text('Categorias', style: CustomLabels.h1),
               const SizedBox(height: 10),
               PaginatedDataTable(
                 columns: const [
@@ -42,8 +41,8 @@ class _CategoriesViewState extends State<CategoriesView> {
                   DataColumn(label: Text('Carrera')),
                   DataColumn(label: Text('Acciones')),
                 ],
-                source: CategoriesDTS(categorias, context),
-                header: const Text('Carreras disponibles', maxLines: 2),
+                source: CategoriesDTS(pagos, context),
+                header: const Text('Categorias disponibles', maxLines: 2),
                 onRowsPerPageChanged: (value) {
                   setState(() {
                     _rowsPerPage = value ?? 10;

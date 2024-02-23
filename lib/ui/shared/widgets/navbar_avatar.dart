@@ -1,17 +1,21 @@
+import 'package:admin_dashboard/providers/auth_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class NavbarAvatar extends StatelessWidget {
   const NavbarAvatar({Key? key}) : super(key: key);
 
-
   @override
   Widget build(BuildContext context) {
-    return ClipOval( //Hace circular la imagen
-      child: SizedBox( 
-          width: 30,
-          height: 30, 
-          child: Image.network('https://lh3.googleusercontent.com/a/ACg8ocKAITG9xixErO9M_i8WCfTkGTAfdf18RR1UD4sKcA83cSk=s360-c-no'),
-        ),
-      );
+    final user = Provider.of<AuthProvider>(context).user!;
+    String imagePath = user.img != null ? user.img! : 'assets/no-image.jpg';
+    return ClipOval(
+      //Hace circular la imagen
+      child: SizedBox(
+        width: 30,
+        height: 30,
+        child: Image.network(imagePath),
+      ),
+    );
   }
 }

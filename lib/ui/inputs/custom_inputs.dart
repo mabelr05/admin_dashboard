@@ -13,11 +13,11 @@ class CustomInputs {
         borderSide: BorderSide(color: Colors.white.withOpacity(0.3))
       ),
       enabledBorder: OutlineInputBorder(
-        borderSide: BorderSide(color: Color.fromARGB(255, 1, 18, 92).withOpacity(0.3))
+        borderSide: BorderSide(color: const Color.fromARGB(255, 1, 18, 92).withOpacity(0.3))
       ),
       hintText: hint,
       labelText: label,
-      prefixIcon: Icon( icon, color: Color.fromARGB(160, 41, 39, 55) ),
+      prefixIcon: Icon( icon, color: const Color.fromARGB(160, 41, 39, 55) ),
       labelStyle: const TextStyle( color: Color.fromARGB(84, 48, 38, 71) ),
       hintStyle: const TextStyle( color: Color.fromARGB(84, 48, 38, 71) ),
     );

@@ -6,119 +6,115 @@ import 'package:admin_dashboard/ui/layouts/auth/widgets/custom_title.dart';
 import 'package:flutter/material.dart';
 import 'package:admin_dashboard/ui/layouts/auth/widgets/links_bar.dart';
 
-
-class AuthLayout extends StatelessWidget{
-
+class AuthLayout extends StatelessWidget {
   final Widget child;
-  const AuthLayout({
-    Key? key,
-    required this.child
-  }) : super(key:key);
+  const AuthLayout({Key? key, required this.child}) : super(key: key);
   @override
-  Widget build(BuildContext context){
-
+  Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
 
     return Scaffold(
-      body: Scrollbar(
-       // isAlwaysShown: true,
-        child: ListView(
-          physics: const ClampingScrollPhysics(), //Evita que se muevaa la pagina
-          children: [
-        
-            (size.width > 500)
-           ? _DesktopBody(child:child)
-            //Mobile
-           : _MobileBody(child:child),
-            //LinksBar
-            const LinksBar()
-        
-          ],
-        ),
-      )
-    );
-
+        body: Scrollbar(
+      // isAlwaysShown: true,
+      child: ListView(
+        physics: const ClampingScrollPhysics(), //Evita que se muevaa la pagina
+        children: [
+          (size.width > 500)
+              ? _DesktopBody(child: child)
+              //Mobile
+              : _MobileBody(child: child),
+          //LinksBar
+          const LinksBar()
+        ],
+      ),
+    ));
   }
 }
 
-  class _MobileBody extends StatelessWidget{
-    final Widget child;
-    const _MobileBody({
-      Key? key,
-      required this.child
-    }): super(key: key);
-    
-
-
-    @override
-    Widget build(BuildContext context){
-      print("this is mobileBody");
-      return Container(
-        color: const Color.fromARGB(255, 0, 0, 0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            const SizedBox(height: 20),
-            const CustomTitle(),
-            SizedBox(
-              width: double.infinity,
-              height:420,
-              child: child,
-            ),
-            const SizedBox(
-              width: double.infinity,
-              height: 400,
-             child: BackgroundAdmicon(),
-            )
-          ],
-        ),
-      );
-    }
-  }
-
-class _DesktopBody extends StatelessWidget {
-
+class _MobileBody extends StatelessWidget {
   final Widget child;
-
-  const _DesktopBody({
-    Key? key, 
-    required this.child
-    }) : super(key: key);
+  const _MobileBody({Key? key, required this.child}) : super(key: key);
 
   @override
-  Widget build (BuildContext context) {
+  Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+    final topSize = size.height * 0.30;
+    final bottomSize = size.height - topSize;
+    print("this is mobileBody");
+    return Container(
+      color: AppColor.kPrimary,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          Container(
+            color: AppColor.kPrimary,
+            width: double.infinity,
+            height: topSize,
+            child: BackgroundAdmicon(sizeImage: topSize * 0.5),
+          ),
+          Container(
+            width: double.infinity,
+            height: bottomSize,
+            decoration: BoxDecoration(
+                borderRadius: const BorderRadius.only(topLeft: Radius.circular(50)),
+                color: AppColor.kWhite),
+            child: ListView(
+              children: [
+                const SizedBox(height: 20),
+                const CustomTitle(),
+                SizedBox(
+                  width: double.infinity,
+                  height: 420,
+                  child: child,
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _DesktopBody extends StatelessWidget {
+  final Widget child;
+
+  const _DesktopBody({Key? key, required this.child}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
     print("this is DesktopBody");
 
     final size = MediaQuery.of(context).size;
 
     return Container(
       width: size.width,
-      height: size.height*0.95,
+      height: size.height * 0.95,
       color: AppColor.kPrimary,
       child: Row(
         children: [
+          // Background
+          // Flexible
+          //Admicon Background
+          Expanded(
+            child: BackgroundAdmicon(sizeImage: (size.width * 0.60) * 0.5),
+          ),
 
-        // Background
-        // Flexible
-        //Admicon Background
-        const Expanded(child: BackgroundAdmicon()),
-
-        //View Container
-        //Estatico
-        Container(
-          width: 600,
-          height: double.infinity,
-          color: Colors.white,
-          child: Column(
-            children: [
-              const SizedBox(height: 20),
-              const CustomTitle(),
-              const SizedBox(height: 50),
-              Expanded(child: child),
-            ],
+          //View Container
+          //Estatico
+          Container(
+            width: size.width * 0.40 < 500 ? 400 : size.width * 0.40,
+            height: double.infinity,
+            color: Colors.white,
+            child: Column(
+              children: [
+                const SizedBox(height: 20),
+                const CustomTitle(),
+                const SizedBox(height: 50),
+                Expanded(child: child),
+              ],
             ),
-         )
-
+          )
         ],
       ),
     );

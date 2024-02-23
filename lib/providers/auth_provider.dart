@@ -28,6 +28,11 @@ class AuthProvider extends ChangeNotifier {
 
       authStatus = AuthStatus.authenticated;
       LocalStorage.prefs.setString('token', authResponse.token);
+      String imagePath =
+          authResponse.img != null ? authResponse.img! : 'assets/no-image.jpg';
+          print('*** 0Link to image: $imagePath ***');
+      LocalStorage.prefs.setString('img', imagePath);
+
       NavigationService.replaceTo(Flurorouter.dashboardRoute);
 
       CafeApi.configureDio();

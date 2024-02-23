@@ -2,6 +2,7 @@ import 'package:admin_dashboard/providers/auth_provider.dart';
 import 'package:admin_dashboard/providers/sidemenu_provider.dart';
 import 'package:admin_dashboard/router/router.dart';
 import 'package:admin_dashboard/services/navigation_service.dart';
+import 'package:admin_dashboard/ui/app_colors.dart';
 import 'package:admin_dashboard/ui/shared/widgets/logo.dart';
 import 'package:admin_dashboard/ui/shared/widgets/menu_item.dart';
 import 'package:admin_dashboard/ui/shared/widgets/text_separator.dart';
@@ -53,10 +54,21 @@ class Sidebar extends StatelessWidget {
             
           ),
 
-          MenuItem(text: 'Monto',icon: Icons.monetization_on_outlined ,onPressed: (){},),
+          MenuItem(text: 'Cuotas',
+          icon: Icons.monetization_on_outlined ,
+          onPressed: () => navigateTo(Flurorouter.montosRoute),
+          isActive: sideMenuProvider.currentPage == Flurorouter.montosRoute
+          ),
+
+           MenuItem(text: 'Pagos',
+            icon: Icons.attach_money_outlined,
+            onPressed: () => navigateTo(Flurorouter.pagosRoute),
+            isActive: sideMenuProvider.currentPage == Flurorouter.pagosRoute,
+            ),
+
 
           MenuItem(
-            text: 'Categorias',
+            text: 'Carreras',
             icon: Icons.category_outlined ,
             onPressed: () => navigateTo(Flurorouter.categoriesRoute),
             isActive: sideMenuProvider.currentPage == Flurorouter.categoriesRoute,
@@ -64,8 +76,12 @@ class Sidebar extends StatelessWidget {
 
             const SizedBox(height: 30),
 
-            const TextSeparator( text: 'UI Elements'),
-            MenuItem(text: 'Analytic',icon: Icons.show_chart_outlined ,onPressed: (){},),
+            const TextSeparator( text: 'others'),
+            MenuItem(text: 'Co-Gobierno',
+            icon: Icons.history_edu_outlined ,
+            onPressed: () => navigateTo(Flurorouter.gobiernoRoute),
+            isActive: sideMenuProvider.currentPage == Flurorouter.gobiernoRoute,
+            ),
             
             MenuItem(
             text: 'Dashboard',
@@ -76,7 +92,7 @@ class Sidebar extends StatelessWidget {
             ),
 
             MenuItem(
-              text: 'Logout',
+              text: 'Cerrar Sesion',
               icon: Icons.exit_to_app_outlined ,
               onPressed: (){
                 Provider.of<AuthProvider>(context, listen: false)
@@ -90,16 +106,16 @@ class Sidebar extends StatelessWidget {
   }
 
   //Decoracion del menu
-  BoxDecoration buildBoxDecoration() => const BoxDecoration(
+  BoxDecoration buildBoxDecoration() =>  BoxDecoration(
   gradient: LinearGradient(
     colors: [
-      Color.fromARGB(255, 3, 65, 62),
-      Color.fromARGB(255, 5, 35, 35),
+      AppColor.kPrimary,
+      const Color.fromARGB(255, 5, 35, 35),
 
       
       ]
     ),
-    boxShadow: [
+    boxShadow: const [
         BoxShadow(
         color: Color.fromARGB(255, 181, 215, 244),
         blurRadius: 10

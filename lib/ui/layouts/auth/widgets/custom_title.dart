@@ -11,11 +11,11 @@ class CustomTitle extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Image.asset(
-            'admicon.png',
-            width: 50,
-            height: 50,
-          ),
+          // Image.asset(
+          //   'admicon.png',
+          //   width: 50,
+          //   height: 50,
+          // ),
           const SizedBox(height: 20),
           FittedBox(
             fit: BoxFit.contain,
@@ -25,18 +25,11 @@ class CustomTitle extends StatelessWidget {
                   'Bienvenidos',
                   style: GoogleFonts.montserratAlternates(
                     fontSize: 66,
-                    color: Color.fromARGB(255, 7, 12, 23),
+                    color: const Color.fromARGB(255, 7, 12, 23),
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                Text(
-                  'Co-Gobierno Estudiantil ISTL',
-                  style: GoogleFonts.montserratAlternates(
-                    fontSize: 25,
-                    color: Color.fromARGB(255, 14, 25, 47),
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
+                
               ],
             ),
           )

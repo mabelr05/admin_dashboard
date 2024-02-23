@@ -1,5 +1,5 @@
-import 'package:admin_dashboard/models/categoria.dart';
-import 'package:admin_dashboard/providers/categories_provider.dart';
+import 'package:admin_dashboard/models/monto.dart';
+import 'package:admin_dashboard/providers/monto_provider.dart';
 import 'package:admin_dashboard/services/notifications_service.dart';
 import 'package:admin_dashboard/ui/buttons/custom_outlined_button.dart';
 import 'package:admin_dashboard/ui/inputs/custom_inputs.dart';
@@ -7,16 +7,16 @@ import 'package:admin_dashboard/ui/labels/custom_labels.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class CategoriaModal extends StatefulWidget {
-  final Categoria? categoria;
+class MontoModal extends StatefulWidget {
+  final Monto? monto;
 
-  const CategoriaModal({Key? key, this.categoria}) : super(key: key);
+  const MontoModal({Key? key, this.monto}) : super(key: key);
 
   @override
-  CategoriaModalState createState() => CategoriaModalState();
+  MontoModalState createState() => MontoModalState();
 }
 
-class CategoriaModalState extends State<CategoriaModal> {
+class MontoModalState extends State<MontoModal> {
   String nombre = '';
   String? id;
 
@@ -24,14 +24,14 @@ class CategoriaModalState extends State<CategoriaModal> {
   void initState() {
     super.initState();
 
-    id = widget.categoria?.id;
-    nombre = widget.categoria?.nombre ?? '';
+    id = widget.monto?.id;
+    nombre = widget.monto?.nombre ?? '';
   }
 
   @override
   Widget build(BuildContext context) {
-    final categoryProvider =
-        Provider.of<CategoriesProvider>(context, listen: false);
+    final montoProvider =
+        Provider.of<MontosProvider>(context, listen: false);
 
     return Container(
       padding: const EdgeInsets.all(20),
@@ -43,7 +43,7 @@ class CategoriaModalState extends State<CategoriaModal> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(widget.categoria?.nombre ?? 'Nueva categoría',
+              Text(widget.monto?.nombre ?? 'Nueva categoría',
                   style: CustomLabels.h1.copyWith(color: Colors.white)),
               IconButton(
                   icon: const Icon(
@@ -56,7 +56,7 @@ class CategoriaModalState extends State<CategoriaModal> {
           Divider(color: Colors.white.withOpacity(0.3)),
           const SizedBox(height: 20),
           TextFormField(
-            initialValue: widget.categoria?.nombre ?? '',
+            initialValue: widget.monto?.nombre ?? '',
             onChanged: (value) => nombre = value,
             decoration: CustomInputs.loginInputDecoration(
                 hint: 'Nombre de la categoría',
@@ -72,11 +72,11 @@ class CategoriaModalState extends State<CategoriaModal> {
                 try {
                   if (id == null) {
                     // Crear
-                    await categoryProvider.newCategoria(nombre);
+                    await montoProvider.newMonto(nombre);
                     NotificationsService.showSnackbar('$nombre creado!');
                   } else {
                     // Actualizar
-                    await categoryProvider.updateCategoria(id!, nombre);
+                    await montoProvider.updateMonto(id!, nombre);
                     NotificationsService.showSnackbar('$nombre Actualizado!');
                   }
 
@@ -99,6 +99,6 @@ class CategoriaModalState extends State<CategoriaModal> {
   BoxDecoration buildBoxDecoration() => const BoxDecoration(
       borderRadius: BorderRadius.only(
           topLeft: Radius.circular(20), topRight: Radius.circular(20)),
-      color: Color.fromARGB(255, 9, 21, 79),
+      color: Color(0xff0F2041),
       boxShadow: [BoxShadow(color: Colors.black26)]);
 }

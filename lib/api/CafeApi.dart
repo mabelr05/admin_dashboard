@@ -1,5 +1,6 @@
 import 'dart:typed_data';
 
+import 'package:admin_dashboard/api/config.dart';
 import 'package:admin_dashboard/services/local_storage.dart';
 import 'package:dio/dio.dart';
 
@@ -10,7 +11,8 @@ class CafeApi{
   static void configureDio() {
 
     //Base del url
-    _dio.options.baseUrl = 'http://localhost:8080/api';
+    //_dio.options.baseUrl = 'http://localhost:8080/api';
+    _dio.options.baseUrl = '${AppConfig.urlServer}/api';
 
     //Configurar Headers
     _dio.options.headers = {
