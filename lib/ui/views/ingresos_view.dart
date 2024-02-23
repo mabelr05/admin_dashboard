@@ -19,8 +19,8 @@ class PaymentScreen extends StatefulWidget {
 }
 
 class _PaymentScreenState extends State<PaymentScreen> {
-  final TextEditingController _nameController = TextEditingController();
-  final TextEditingController _namecController = TextEditingController();
+  final TextEditingController _nameCarreraController = TextEditingController();
+  final TextEditingController _nameCicloController = TextEditingController();
   final TextEditingController _amountController = TextEditingController();
   List<Payment> _payments = [];
 
@@ -36,11 +36,11 @@ class _PaymentScreenState extends State<PaymentScreen> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             TextField(
-              controller: _nameController,
+              controller: _nameCarreraController,
               decoration: InputDecoration(labelText: 'Carrera'),
             ),
             TextField(
-              controller: _namecController,
+              controller: _nameCicloController,
               decoration: InputDecoration(labelText: 'Ciclo'),
             ),
             TextField(
@@ -55,8 +55,8 @@ class _PaymentScreenState extends State<PaymentScreen> {
               },
               child: Text(
                 'Registrar Pago',
-                style: TextStyle(
-                    color: Colors.indigo),),
+                style: TextStyle(color: Colors.indigo),
+              ),
             ),
             SizedBox(height: 20),
             Text(
@@ -67,10 +67,12 @@ class _PaymentScreenState extends State<PaymentScreen> {
               child: ListView.builder(
                 itemCount: _payments.length,
                 itemBuilder: (BuildContext context, int index) {
-                  return ListTile(
-                    title: Text(_payments[index].name),
-                    subtitle:
-                        Text('\$${_payments[index].amount.toStringAsFixed(2)}'),
+                  return Column(
+                    children: [
+                      Text(_payments[index].name),
+                      Text(_payments[index].ciclo),
+                      Text('\$${_payments[index].amount.toStringAsFixed(2)}'),
+                    ],
                   );
                 },
               ),
@@ -82,13 +84,15 @@ class _PaymentScreenState extends State<PaymentScreen> {
   }
 
   void _registerPayment() {
-    final String name = _nameController.text;
+    final String carrera = _nameCarreraController.text;
+    final String ciclo = _nameCicloController.text;
     final double amount = double.tryParse(_amountController.text) ?? 0.0;
 
-    if (name.isNotEmpty && amount > 0) {
+    if (carrera.isNotEmpty && amount > 0) {
       setState(() {
-        _payments.add(Payment(name: name, amount: amount));
-        _nameController.clear();
+        _payments.add(Payment(name: carrera, amount: amount, ciclo: ciclo));
+        _nameCarreraController.clear();
+        _nameCicloController.clear();
         _amountController.clear();
       });
     } else {
@@ -117,6 +121,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
 class Payment {
   final String name;
   final double amount;
+  final String ciclo;
 
-  Payment({required this.name, required this.amount});
+  Payment({required this.name, required this.amount, required this.ciclo});
 }
