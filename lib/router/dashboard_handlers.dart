@@ -4,6 +4,7 @@ import 'package:admin_dashboard/ui/views/gobierno_view.dart';
 import 'package:admin_dashboard/ui/views/ingresos_view.dart';
 import 'package:admin_dashboard/ui/views/monto_view.dart';
 import 'package:admin_dashboard/ui/views/pagos_view.dart';
+import 'package:admin_dashboard/ui/views/post_new_view.dart';
 import 'package:admin_dashboard/ui/views/user_view.dart';
 import 'package:admin_dashboard/ui/views/users_view.dart';
 import 'package:fluro/fluro.dart';
@@ -43,7 +44,7 @@ class DashboardHandlers {
   static Handler publications = Handler(handlerFunc: (context, params) {
     final authProvider = Provider.of<AuthProvider>(context!);
     Provider.of<SideMenuProvider>(context, listen: false)
-        .setCurrentPageUrl(Flurorouter.publicationsRoute);
+        .setCurrentPageUrl(Flurorouter.postsRoute);
 
     if (authProvider.authStatus == AuthStatus.authenticated) {
       return const PublicationsView();
@@ -83,6 +84,18 @@ class DashboardHandlers {
     }
   });
 
+  static Handler newPost = Handler(handlerFunc: (context, params) {
+    final authProvider = Provider.of<AuthProvider>(context!);
+    Provider.of<SideMenuProvider>(context, listen: false)
+        .setCurrentPageUrl(Flurorouter.postsRoute);
+
+    if (authProvider.authStatus == AuthStatus.authenticated) {
+      return const PostNewView();
+    } else {
+      return const LoginView();
+    }
+  });
+
   static Handler montos = Handler(handlerFunc: (context, params) {
     final authProvider = Provider.of<AuthProvider>(context!);
     Provider.of<SideMenuProvider>(context, listen: false)
@@ -95,7 +108,6 @@ class DashboardHandlers {
     }
   });
 
-  
   static Handler gobierno = Handler(handlerFunc: (context, params) {
     final authProvider = Provider.of<AuthProvider>(context!);
     Provider.of<SideMenuProvider>(context, listen: false)
@@ -126,7 +138,7 @@ class DashboardHandlers {
         .setCurrentPageUrl(Flurorouter.ingresosRoute);
 
     if (authProvider.authStatus == AuthStatus.authenticated) {
-      return  IngresosView();
+      return const IngresosView();
     } else {
       return const LoginView();
     }

@@ -1,6 +1,7 @@
-import 'package:admin_dashboard/providers/auth_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
+import '../../../providers/auth_provider.dart';
 
 class NavbarAvatar extends StatelessWidget {
   const NavbarAvatar({Key? key}) : super(key: key);

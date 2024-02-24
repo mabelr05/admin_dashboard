@@ -24,7 +24,7 @@ class PostsProvider extends ChangeNotifier {
     };
 
     // Verificar si se proporcionó una imagen antes de agregarla al mapa
-    if (img != null) {
+    if (img != null && img.isNotEmpty) {
       data['img'] = img;
     }
 

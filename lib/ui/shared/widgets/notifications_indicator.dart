@@ -1,6 +1,7 @@
-import 'package:admin_dashboard/providers/auth_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
+import '../../../providers/auth_provider.dart';
 
 class NotificationsIndicator extends StatelessWidget {
   const NotificationsIndicator({Key? key}) : super(key: key);

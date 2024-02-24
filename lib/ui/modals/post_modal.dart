@@ -1,8 +1,5 @@
-import 'dart:convert';
-import 'dart:typed_data';
 import 'package:admin_dashboard/ui/buttons/custom_outlined_button.dart';
 import 'package:admin_dashboard/ui/labels/custom_labels.dart';
-import 'package:http/http.dart' as http;
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -41,7 +38,7 @@ class PostModalState extends State<PostModal> {
                 Text('Nueva Publicación',
                     style: CustomLabels.h1.copyWith(color: Colors.white)),
                 IconButton(
-                    icon: Icon(
+                    icon: const Icon(
                       Icons.close,
                       color: Colors.white,
                     ),
@@ -49,7 +46,7 @@ class PostModalState extends State<PostModal> {
               ],
             ),
             Divider(color: Colors.white.withOpacity(0.3)),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Column(
               children: [
                 GestureDetector(
@@ -64,11 +61,11 @@ class PostModalState extends State<PostModal> {
                     
                     if (result != null && result.files.isNotEmpty) {
                       // Guardar el nombre del archivo seleccionado en la variable 'img'
-                      img = result.files.first.name!;
+                      img = result.files.first.name;
                       setState(() {}); // Actualizar el estado para reflejar el cambio en la imagen
                     }
                   },
-                  child: Container(
+                  child: SizedBox(
                     width: 100,
                     height: 100,
                     child: img.isNotEmpty
@@ -85,14 +82,14 @@ class PostModalState extends State<PostModal> {
                           ),
                   ),
                 ),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
                 TextFormField(
                   onChanged: (value) => titulo = value,
                   decoration: CustomInputs.formInputDecoration(
                       hint: 'Titulo del Post',
                       label: 'Titulo',
                       icon: Icons.new_releases_outlined),
-                  style: TextStyle(color: Colors.white),
+                  style: const TextStyle(color: Colors.white),
                 ),
                 TextFormField(
                   onChanged: (value) => descripcion = value,
@@ -100,11 +97,11 @@ class PostModalState extends State<PostModal> {
                       hint: 'Descripción del Post',
                       label: 'Descripción',
                       icon: Icons.new_releases_outlined),
-                  style: TextStyle(color: Colors.white),
+                  style: const TextStyle(color: Colors.white),
                 ),
               ],
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Container(
               alignment: Alignment.center,
               child: CustomOutlinedButton(

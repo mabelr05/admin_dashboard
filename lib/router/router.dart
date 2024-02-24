@@ -14,14 +14,14 @@ class Flurorouter {
 
   //Dashboard
   static String dashboardRoute = '/dashboard';
-  static String publicationsRoute = '/dashboard/publications';
+  static String postsRoute = '/dashboard/publications';
   static String blankRoute = '/dashboard/blank';
   static String categoriesRoute = '/dashboard/categories';
   static String montosRoute = '/dashboard/monto';
   static String gobiernoRoute = '/dashboard/gobierno';
   static String pagosRoute = '/dashboard/pagos';
   static String ingresosRoute = '/dashboard/ingresos';
-
+  static String newPostRoute = '/dashboard/new-post';
   static String usersRoute = '/dashboard/users';
   static String userRoute = '/dashboard/users/:uid';
 
@@ -38,9 +38,7 @@ class Flurorouter {
     router.define(dashboardRoute,
         handler: DashboardHandlers.dashboard,
         transitionType: TransitionType.fadeIn);
-    router.define(publicationsRoute,
-        handler: DashboardHandlers.publications,
-        transitionType: TransitionType.fadeIn);
+
     router.define(categoriesRoute,
         handler: DashboardHandlers.categories,
         transitionType: TransitionType.fadeIn);
@@ -53,9 +51,16 @@ class Flurorouter {
     router.define(pagosRoute,
         handler: DashboardHandlers.pagos,
         transitionType: TransitionType.fadeIn);
-
     router.define(ingresosRoute,
         handler: DashboardHandlers.ingresos,
+        transitionType: TransitionType.fadeIn);
+
+    //Publications
+    router.define(postsRoute,
+        handler: DashboardHandlers.publications,
+        transitionType: TransitionType.fadeIn);
+    router.define(newPostRoute,
+        handler: DashboardHandlers.newPost,
         transitionType: TransitionType.fadeIn);
 
     //users

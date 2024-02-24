@@ -4,7 +4,6 @@ import 'dart:typed_data';
 
 import 'package:admin_dashboard/api/CafeApi.dart';
 import 'package:admin_dashboard/models/file.dart';
-import 'package:admin_dashboard/models/usuario.dart';
 import 'package:flutter/material.dart';
 
 class FileUploadProvider extends ChangeNotifier{

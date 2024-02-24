@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class IngresosView extends StatelessWidget {
+  const IngresosView({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -8,12 +10,14 @@ class IngresosView extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.indigo,
       ),
-      home: PaymentScreen(),
+      home: const PaymentScreen(),
     );
   }
 }
 
 class PaymentScreen extends StatefulWidget {
+  const PaymentScreen({Key? key}) : super(key: key);
+
   @override
   _PaymentScreenState createState() => _PaymentScreenState();
 }
@@ -22,44 +26,44 @@ class _PaymentScreenState extends State<PaymentScreen> {
   final TextEditingController _nameCarreraController = TextEditingController();
   final TextEditingController _nameCicloController = TextEditingController();
   final TextEditingController _amountController = TextEditingController();
-  List<Payment> _payments = [];
+  final List<Payment> _payments = [];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Registro de Pagos'),
+        title: const Text('Registro de Pagos'),
       ),
       body: Padding(
-        padding: EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             TextField(
               controller: _nameCarreraController,
-              decoration: InputDecoration(labelText: 'Carrera'),
+              decoration: const InputDecoration(labelText: 'Carrera'),
             ),
             TextField(
               controller: _nameCicloController,
-              decoration: InputDecoration(labelText: 'Ciclo'),
+              decoration: const InputDecoration(labelText: 'Ciclo'),
             ),
             TextField(
               controller: _amountController,
               keyboardType: TextInputType.number,
-              decoration: InputDecoration(labelText: 'Cantidad'),
+              decoration: const InputDecoration(labelText: 'Cantidad'),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
                 _registerPayment();
               },
-              child: Text(
+              child: const Text(
                 'Registrar Pago',
                 style: TextStyle(color: Colors.indigo),
               ),
             ),
-            SizedBox(height: 20),
-            Text(
+            const SizedBox(height: 20),
+            const Text(
               'Pagos Registrados:',
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
@@ -100,15 +104,15 @@ class _PaymentScreenState extends State<PaymentScreen> {
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
-            title: Text('Error'),
+            title: const Text('Error'),
             content:
-                Text('Por favor, ingrese un nombre y una cantidad válida.'),
+                const Text('Por favor, ingrese un nombre y una cantidad válida.'),
             actions: [
               TextButton(
                 onPressed: () {
                   Navigator.of(context).pop();
                 },
-                child: Text('OK'),
+                child: const Text('OK'),
               ),
             ],
           );

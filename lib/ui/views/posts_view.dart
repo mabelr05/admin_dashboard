@@ -1,10 +1,10 @@
 import 'package:admin_dashboard/providers/posts_provider.dart';
-import 'package:admin_dashboard/ui/modals/post_modal.dart';
 import 'package:flutter/material.dart';
 import 'package:admin_dashboard/ui/labels/custom_labels.dart';
 import 'package:provider/provider.dart';
 
 import '../../services/date_convert.dart';
+import '../../services/navigation_service.dart';
 
 class PublicationsView extends StatefulWidget {
   const PublicationsView({Key? key}) : super(key: key);
@@ -37,11 +37,7 @@ class _PublicationsViewState extends State<PublicationsView> {
               Text('Publicaciones', style: CustomLabels.h1),
               ElevatedButton(
                 onPressed: () {
-                  showModalBottomSheet(
-                    backgroundColor: Colors.transparent,
-                    context: context,
-                    builder: (context) => const PostModal(),
-                  );
+                  NavigationService.replaceTo('/dashboard/new-post');
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.indigo, // Color del botón
@@ -112,20 +108,20 @@ class _PublicationsViewState extends State<PublicationsView> {
                           children: [
                             Text(
                               post.titulo,
-                              style: TextStyle(
+                              style: const TextStyle(
                                   fontSize: 16, fontWeight: FontWeight.bold),
                             ),
                             const SizedBox(height: 5),
                             Text(
                               post.descripcion,
-                              style: TextStyle(fontSize: 14),
+                              style: const TextStyle(fontSize: 14),
                             ),
                           ],
                         ),
                       ),
                       Positioned(
                         child: Text(convertirFechaLegible(post.timeStamp),
-                            style: TextStyle(fontSize: 12)),
+                            style: const TextStyle(fontSize: 12)),
                       )
                     ],
                   ),

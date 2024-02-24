@@ -7,7 +7,6 @@ import 'package:admin_dashboard/ui/inputs/custom_inputs.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
-
 import 'package:admin_dashboard/ui/cards/white_card.dart';
 import 'package:admin_dashboard/ui/labels/custom_labels.dart';
 import 'package:provider/provider.dart';
@@ -125,10 +124,12 @@ class _UserViewForm extends StatelessWidget {
                 onChanged: (value) =>
                     userFormProvider.copyUserWith(nombre: value),
                 validator: (value) {
-                  if (value == null || value.isEmpty)
+                  if (value == null || value.isEmpty) {
                     return 'Ingrese un nombre';
-                  if (value.length < 3)
+                  }
+                  if (value.length < 3) {
                     return 'El nombre debe de ser de tres letras como minimo';
+                  }
                   return null;
                 },
               ),
@@ -142,8 +143,9 @@ class _UserViewForm extends StatelessWidget {
                 onChanged: (value) =>
                     userFormProvider.copyUserWith(correo: value),
                 validator: (value) {
-                  if (!EmailValidator.validate(value ?? ''))
+                  if (!EmailValidator.validate(value ?? '')) {
                     return 'Email no valido';
+                  }
                   return null;
                 },
               ),
