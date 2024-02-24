@@ -3,7 +3,6 @@ import 'package:admin_dashboard/ui/views/categories_view.dart';
 import 'package:admin_dashboard/ui/views/gobierno_view.dart';
 import 'package:admin_dashboard/ui/views/ingresos_view.dart';
 import 'package:admin_dashboard/ui/views/monto_view.dart';
-import 'package:admin_dashboard/ui/views/pagos_view.dart';
 import 'package:admin_dashboard/ui/views/post_new_view.dart';
 import 'package:admin_dashboard/ui/views/user_view.dart';
 import 'package:admin_dashboard/ui/views/users_view.dart';
@@ -120,17 +119,7 @@ class DashboardHandlers {
     }
   });
 
-  static Handler pagos = Handler(handlerFunc: (context, params) {
-    final authProvider = Provider.of<AuthProvider>(context!);
-    Provider.of<SideMenuProvider>(context, listen: false)
-        .setCurrentPageUrl(Flurorouter.pagosRoute);
-
-    if (authProvider.authStatus == AuthStatus.authenticated) {
-      return const PagosView();
-    } else {
-      return const LoginView();
-    }
-  });
+  
 
   static Handler ingresos = Handler(handlerFunc: (context, params) {
     final authProvider = Provider.of<AuthProvider>(context!);
