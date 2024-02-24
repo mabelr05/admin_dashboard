@@ -19,6 +19,7 @@ class Flurorouter {
   static String categoriesRoute = '/dashboard/categories';
   static String montosRoute = '/dashboard/monto';
   static String gobiernoRoute = '/dashboard/gobierno';
+  static String pagosRoute = '/dashboard/pagos';
   static String ingresosRoute = '/dashboard/ingresos';
   static String newPostRoute = '/dashboard/new-post';
   static String usersRoute = '/dashboard/users';

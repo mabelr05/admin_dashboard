@@ -2,7 +2,7 @@ import 'package:admin_dashboard/providers/monto_provider.dart';
 import 'package:admin_dashboard/providers/posts_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:admin_dashboard/api/CafeApi.dart';
+import 'package:admin_dashboard/api/cafe_api.dart';
 import 'package:admin_dashboard/ui/layouts/dashboard/dashboard_layout.dart';
 import 'package:admin_dashboard/ui/layouts/splash/splash_layout.dart';
 import 'package:admin_dashboard/router/router.dart';

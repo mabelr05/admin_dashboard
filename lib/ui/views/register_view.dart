@@ -37,8 +37,9 @@ class RegisterView extends StatelessWidget {
                       TextFormField(
                         onChanged: (value) => registerFormProvider.name = value,
                         validator: (value) {
-                          if (value == null || value.isEmpty)
+                          if (value == null || value.isEmpty) {
                             return 'El nombre es obligatorio';
+                          }
                           return null;
                         },
                         style: const TextStyle(
@@ -57,8 +58,9 @@ class RegisterView extends StatelessWidget {
                             registerFormProvider.email = value,
                         validator: (value) {
                           //Si no es un email se disparara ese mensaje
-                          if (!EmailValidator.validate(value ?? ''))
+                          if (!EmailValidator.validate(value ?? '')) {
                             return 'Email no valido';
+                          }
                           return null;
                         },
                         style: const TextStyle(
@@ -77,11 +79,13 @@ class RegisterView extends StatelessWidget {
                             registerFormProvider.password = value,
                         validator: (value) {
                           //Si no se ingresa un valor, pedira la contraseña
-                          if (value == null || value.isEmpty)
+                          if (value == null || value.isEmpty) {
                             return 'Ingrese su contraseña';
+                          }
                           //Si la contraseña es menor a 6  dijitos, la vuelve apedir
-                          if (value.length < 6)
+                          if (value.length < 6) {
                             return 'Su contraseña debe tener minimo 6 digitos';
+                          }
                           return null; //valido
                         },
                         obscureText: true,

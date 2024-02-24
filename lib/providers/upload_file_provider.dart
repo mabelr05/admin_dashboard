@@ -2,7 +2,7 @@
 
 import 'dart:typed_data';
 
-import 'package:admin_dashboard/api/CafeApi.dart';
+import 'package:admin_dashboard/api/cafe_api.dart';
 import 'package:admin_dashboard/models/file.dart';
 import 'package:flutter/material.dart';
 

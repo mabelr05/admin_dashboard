@@ -56,12 +56,12 @@ class _PaymentScreenState extends State<PaymentScreen> {
               keyboardType: TextInputType.number,
               decoration: const InputDecoration(labelText: 'Cantidad'),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
                 _registerPayment();
               },
-              child: Text(
+              child: const Text(
                 'Registrar Pago',
                 style: TextStyle(color: Colors.indigo),
               ),
@@ -74,7 +74,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
             DataTable(
               headingRowColor: MaterialStateColor.resolveWith(
                   (states) => Colors.indigo[100]!),
-              columns: [
+              columns: const [
                 DataColumn(label: Text('Carrera')),
                 DataColumn(label: Text('Ciclo')),
                 DataColumn(label: Text('Cantidad')),
@@ -98,7 +98,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                     DataCell(Text(payment.user)),
                     DataCell(payment.image != null
                         ? Image.file(File(payment.image!.path))
-                        : Text('No Image')), // Mostrar la imagen seleccionada
+                        : const Text('No Image')), // Mostrar la imagen seleccionada
                   ],
                 );
               }).toList(),
@@ -113,7 +113,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
     final picker = ImagePicker();
     final pickedFile = await picker.pickImage(source: ImageSource.gallery);
     setState(() {
-      var _image = pickedFile;
+      var image = pickedFile;
     });
   }
 
@@ -123,22 +123,22 @@ class _PaymentScreenState extends State<PaymentScreen> {
     final double amount = double.tryParse(_amountController.text) ?? 0.0;
     final String date =
         DateFormat('yyyy-MM-dd HH:mm:ss').format(DateTime.now());
-    final String user = 'Usuario';
+    const String user = 'Usuario';
 
     if (carrera.isNotEmpty && amount > 0) {
       setState(() {
-        var _image;
+        var image;
         _payments.add(Payment(
             name: carrera,
             amount: amount,
             ciclo: ciclo,
             date: date,
             user: user,
-            image: _image));
+            image: image));
         _nameCarreraController.clear();
         _nameCicloController.clear();
         _amountController.clear();
-        _image = null;
+        image = null;
             null; // Limpiar la imagen seleccionada después de registrar el pago
       });
     } else {
