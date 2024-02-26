@@ -24,13 +24,13 @@ class DashboardView extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              CardDashboard(cant: '1', description: 'Total en caja'),
+              CardDashboard(cant: '1', description: 'Pagos pendientes'),
               SizedBox(width: 10),
-              CardDashboard(cant: '1', description: 'Total en caja'),
+              CardDashboard(cant: '50', description: 'Total Recaudado'),
               SizedBox(width: 10),
-              CardDashboard(cant: '1', description: 'Total en caja'),
+              CardDashboard(cant: '50', description: 'Total Gastado'),
               SizedBox(width: 10),
-              CardDashboard(cant: '1', description: 'Total en caja'),
+              CardDashboard(cant: '100', description: 'Total en caja'),
               // Repite lo mismo para los otros contenedores internos
             ],
           ),
