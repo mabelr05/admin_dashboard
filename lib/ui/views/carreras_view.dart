@@ -5,26 +5,26 @@ import 'package:flutter/material.dart';
 import 'package:admin_dashboard/ui/labels/custom_labels.dart';
 import 'package:provider/provider.dart';
 
-class CategoriesView extends StatefulWidget {
-  const CategoriesView({Key? key}) : super(key: key);
+class CarrerasView extends StatefulWidget {
+  const CarrerasView({Key? key}) : super(key: key);
 
   @override
-  _CategoriesViewState createState() => _CategoriesViewState();
+  _CarrerasViewState createState() => _CarrerasViewState();
 }
 
-class _CategoriesViewState extends State<CategoriesView> {
+class _CarrerasViewState extends State<CarrerasView> {
   int _rowsPerPage = PaginatedDataTable.defaultRowsPerPage;
 
   @override
   void initState() {
     super.initState();
 
-    Provider.of<CategoriesProvider>(context, listen: false).getCategories();
+    Provider.of<CarrerasProvider>(context, listen: false).getCategories();
   }
 
   @override
   Widget build(BuildContext context) {
-    final categorias = Provider.of<CategoriesProvider>(context).categorias;
+    final categorias = Provider.of<CarrerasProvider>(context).categorias;
     //print(categorias);
 
     return Builder(

@@ -3,11 +3,10 @@ import 'package:admin_dashboard/models/categoria.dart';
 import 'package:admin_dashboard/models/http/categories_response.dart';
 import 'package:flutter/material.dart';
 
-class CategoriesProvider extends ChangeNotifier{
+class CarrerasProvider extends ChangeNotifier {
+  List<Categoria> categorias = [];
 
-  List <Categoria> categorias = [];
-
-  getCategories() async{
+  getCategories() async {
     final resp = await CafeApi.httpGet('/categorias');
     final categoriesResp = CategoriesResponse.fromMap(resp);
 
@@ -18,61 +17,46 @@ class CategoriesProvider extends ChangeNotifier{
     notifyListeners();
   }
 
-  Future newCategoria( String name) async{
+  Future newCategoria(String name) async {
+    final data = {'nombre': name};
 
-    final data = {
-      'nombre' : name
-    };
-
-    try{
-
+    try {
       final json = await CafeApi.post('/categorias', data);
       final newCategoria = Categoria.fromMap(json);
 
-      categorias.add( newCategoria);
+      categorias.add(newCategoria);
       notifyListeners();
-
-    }catch (e) {
+    } catch (e) {
       throw 'Error al crear categoria';
     }
   }
 
-   Future updateCategoria(String id, String name) async{
+  Future updateCategoria(String id, String name) async {
+    final data = {'nombre': name};
 
-    final data = {
-      'nombre' : name
-    };
-
-    try{
-
+    try {
       await CafeApi.put('/categorias/$id', data);
 
-      categorias = categorias.map(
-        (categoria) {
-          if (categoria.id != id) return categoria;
+      categorias = categorias.map((categoria) {
+        if (categoria.id != id) return categoria;
 
-          categoria.nombre= name;
-          return categoria;
-        }
-      ).toList();
+        categoria.nombre = name;
+        return categoria;
+      }).toList();
       notifyListeners();
-
-    }catch (e) {
+    } catch (e) {
       throw 'Error al crear categoria';
     }
   }
 
-  Future deleteCategoria(String id) async{
-
-    try{
-
+  Future deleteCategoria(String id) async {
+    try {
       await CafeApi.delete('/categorias/$id', {});
 
       categorias.removeWhere((categoria) => categoria.id == id);
-        
-      notifyListeners();
 
-    }catch (e) {
+      notifyListeners();
+    } catch (e) {
       print(e);
       print(' Error al crear la categoria');
     }

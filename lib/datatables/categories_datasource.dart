@@ -47,7 +47,7 @@ class CategoriesDTS extends DataTableSource {
                     TextButton(
                       child: const Text('Si, borrar'),
                       onPressed: () async {
-                        await Provider.of<CategoriesProvider>(context,
+                        await Provider.of<CarrerasProvider>(context,
                                 listen: false)
                             .deleteCategoria(categoria.id);
 

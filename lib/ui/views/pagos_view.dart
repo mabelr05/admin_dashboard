@@ -50,7 +50,7 @@ class _PagosViewState extends State<PagosView> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     _buildSearchField(),
-                    SizedBox(width: 50),
+                    const SizedBox(width: 50),
                     _buildFilterDropdown(),
                   ],
                 ),
@@ -128,9 +128,9 @@ class _PagosViewState extends State<PagosView> {
             _searchQuery = value;
           });
         },
-        decoration: InputDecoration(
+        decoration: const InputDecoration(
           hintText: 'Buscar por nombre',
-          prefixIcon: const Icon(Icons.search),
+          prefixIcon: Icon(Icons.search),
           border: OutlineInputBorder(),
         ),
       ),

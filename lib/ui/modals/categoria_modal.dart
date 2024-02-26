@@ -31,7 +31,7 @@ class CategoriaModalState extends State<CategoriaModal> {
   @override
   Widget build(BuildContext context) {
     final categoryProvider =
-        Provider.of<CategoriesProvider>(context, listen: false);
+        Provider.of<CarrerasProvider>(context, listen: false);
 
     return Container(
       padding: const EdgeInsets.all(20),

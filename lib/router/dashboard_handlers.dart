@@ -1,7 +1,7 @@
 import 'package:admin_dashboard/router/router.dart';
-import 'package:admin_dashboard/ui/views/categories_view.dart';
+import 'package:admin_dashboard/ui/views/carreras_view.dart';
 import 'package:admin_dashboard/ui/views/gobierno_view.dart';
-import 'package:admin_dashboard/ui/views/ingresos_view.dart';
+import 'package:admin_dashboard/ui/views/gastos_view.dart';
 import 'package:admin_dashboard/ui/views/cuotas_view.dart';
 import 'package:admin_dashboard/ui/views/pagos_view.dart';
 import 'package:admin_dashboard/ui/views/post_new_view.dart';
@@ -35,7 +35,7 @@ class DashboardHandlers {
         .setCurrentPageUrl(Flurorouter.categoriesRoute);
 
     if (authProvider.authStatus == AuthStatus.authenticated) {
-      return const CategoriesView();
+      return const CarrerasView();
     } else {
       return const LoginView();
     }
@@ -132,13 +132,13 @@ class DashboardHandlers {
     }
   });
 
-  static Handler ingresos = Handler(handlerFunc: (context, params) {
+  static Handler gastos = Handler(handlerFunc: (context, params) {
     final authProvider = Provider.of<AuthProvider>(context!);
     Provider.of<SideMenuProvider>(context, listen: false)
-        .setCurrentPageUrl(Flurorouter.ingresosRoute);
+        .setCurrentPageUrl(Flurorouter.gastosRoute);
 
     if (authProvider.authStatus == AuthStatus.authenticated) {
-      return const IngresosView();
+      return const GastosView();
     } else {
       return const LoginView();
     }
