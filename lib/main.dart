@@ -1,4 +1,5 @@
 import 'package:admin_dashboard/providers/cuota_provider.dart';
+import 'package:admin_dashboard/providers/pago_provider.dart';
 import 'package:admin_dashboard/providers/posts_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -32,6 +33,7 @@ class AppState extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => CategoriesProvider()),
         ChangeNotifierProvider(create: (_) => PostsProvider()),
         ChangeNotifierProvider(create: (_) => CuotasProvider()),
+        ChangeNotifierProvider(create: (_) => PagosProvider()),
         ChangeNotifierProvider(create: (_) => UsersProvider()),
         ChangeNotifierProvider(create: (_) => UserFormProvider()),
       ],

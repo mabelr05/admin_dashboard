@@ -29,8 +29,10 @@ class Flurorouter {
     //Auth Routes
     router.define(rootRoute,
         handler: AdminHandlers.login, transitionType: TransitionType.none);
+
     router.define(loginRoute,
         handler: AdminHandlers.login, transitionType: TransitionType.none);
+
     router.define(registerRoute,
         handler: AdminHandlers.register, transitionType: TransitionType.none);
 
@@ -42,9 +44,15 @@ class Flurorouter {
     router.define(categoriesRoute,
         handler: DashboardHandlers.categories,
         transitionType: TransitionType.fadeIn);
+
     router.define(cuotasRoute,
         handler: DashboardHandlers.cuotas,
         transitionType: TransitionType.fadeIn);
+
+    router.define(pagosRoute,
+        handler: DashboardHandlers.pagos,
+        transitionType: TransitionType.fadeIn);
+
     router.define(gobiernoRoute,
         handler: DashboardHandlers.gobierno,
         transitionType: TransitionType.fadeIn);
