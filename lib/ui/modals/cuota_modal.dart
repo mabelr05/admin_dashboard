@@ -1,5 +1,5 @@
-import 'package:admin_dashboard/models/monto.dart';
-import 'package:admin_dashboard/providers/monto_provider.dart';
+import 'package:admin_dashboard/models/cuota.dart';
+import 'package:admin_dashboard/providers/cuota_provider.dart';
 import 'package:admin_dashboard/services/notifications_service.dart';
 import 'package:admin_dashboard/ui/buttons/custom_outlined_button.dart';
 import 'package:admin_dashboard/ui/inputs/custom_inputs.dart';
@@ -7,16 +7,16 @@ import 'package:admin_dashboard/ui/labels/custom_labels.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class MontoModal extends StatefulWidget {
-  final Monto? monto;
+class CuotaModal extends StatefulWidget {
+  final Cuota? cuota;
 
-  const MontoModal({Key? key, this.monto}) : super(key: key);
+  const CuotaModal.CuotaModal({Key? key, this.cuota}) : super(key: key);
 
   @override
-  MontoModalState createState() => MontoModalState();
+  CuotaModalState createState() => CuotaModalState();
 }
 
-class MontoModalState extends State<MontoModal> {
+class CuotaModalState extends State<CuotaModal> {
   String nombre = '';
   String? id;
 
@@ -24,14 +24,13 @@ class MontoModalState extends State<MontoModal> {
   void initState() {
     super.initState();
 
-    id = widget.monto?.id;
-    nombre = widget.monto?.nombre ?? '';
+    id = widget.cuota?.id;
+    nombre = widget.cuota?.motivo ?? '';
   }
 
   @override
   Widget build(BuildContext context) {
-    final montoProvider =
-        Provider.of<MontosProvider>(context, listen: false);
+    final CuotaProvider = Provider.of<CuotasProvider>(context, listen: false);
 
     return Container(
       padding: const EdgeInsets.all(20),
@@ -43,7 +42,7 @@ class MontoModalState extends State<MontoModal> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(widget.monto?.nombre ?? 'Nueva categoría',
+              Text(widget.cuota?.motivo ?? 'Nueva categoría',
                   style: CustomLabels.h1.copyWith(color: Colors.white)),
               IconButton(
                   icon: const Icon(
@@ -56,7 +55,7 @@ class MontoModalState extends State<MontoModal> {
           Divider(color: Colors.white.withOpacity(0.3)),
           const SizedBox(height: 20),
           TextFormField(
-            initialValue: widget.monto?.nombre ?? '',
+            initialValue: widget.cuota?.motivo ?? '',
             onChanged: (value) => nombre = value,
             decoration: CustomInputs.loginInputDecoration(
                 hint: 'Nombre de la categoría',
@@ -72,11 +71,11 @@ class MontoModalState extends State<MontoModal> {
                 try {
                   if (id == null) {
                     // Crear
-                    await montoProvider.newMonto(nombre);
+                    await CuotaProvider.newCuota(nombre);
                     NotificationsService.showSnackbar('$nombre creado!');
                   } else {
                     // Actualizar
-                    await montoProvider.updateMonto(id!, nombre);
+                    await CuotaProvider.updateCuota(id!, nombre);
                     NotificationsService.showSnackbar('$nombre Actualizado!');
                   }
 

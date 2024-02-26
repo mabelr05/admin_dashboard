@@ -146,7 +146,7 @@ class _PostViewForm extends StatelessWidget {
                 } catch (e) {
                   // Regresar a la pantalla anterior en caso de error
                   NotificationsService.showSnackbarError(
-                      'No se pudo guardar la categoría');
+                      'No se pudo guardar la Publicación');
                 }
               },
               style: ButtonStyle(

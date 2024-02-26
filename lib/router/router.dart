@@ -17,7 +17,7 @@ class Flurorouter {
   static String postsRoute = '/dashboard/publications';
   static String blankRoute = '/dashboard/blank';
   static String categoriesRoute = '/dashboard/categories';
-  static String montosRoute = '/dashboard/monto';
+  static String cuotasRoute = '/dashboard/cuota';
   static String gobiernoRoute = '/dashboard/gobierno';
   static String pagosRoute = '/dashboard/pagos';
   static String ingresosRoute = '/dashboard/ingresos';
@@ -42,13 +42,13 @@ class Flurorouter {
     router.define(categoriesRoute,
         handler: DashboardHandlers.categories,
         transitionType: TransitionType.fadeIn);
-    router.define(montosRoute,
-        handler: DashboardHandlers.montos,
+    router.define(cuotasRoute,
+        handler: DashboardHandlers.cuotas,
         transitionType: TransitionType.fadeIn);
     router.define(gobiernoRoute,
         handler: DashboardHandlers.gobierno,
         transitionType: TransitionType.fadeIn);
-    
+
     router.define(ingresosRoute,
         handler: DashboardHandlers.ingresos,
         transitionType: TransitionType.fadeIn);

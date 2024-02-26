@@ -1,30 +1,30 @@
-import 'package:admin_dashboard/datatables/monto_datasource.dart';
-import 'package:admin_dashboard/providers/monto_provider.dart';
-import 'package:admin_dashboard/ui/modals/monto_modal.dart';
+import 'package:admin_dashboard/datatables/cuotas_datasource.dart';
+import 'package:admin_dashboard/providers/cuota_provider.dart';
+import 'package:admin_dashboard/ui/modals/cuota_modal.dart';
 import 'package:flutter/material.dart';
 import 'package:admin_dashboard/ui/labels/custom_labels.dart';
 import 'package:provider/provider.dart';
 
-class MontosView extends StatefulWidget {
-  const MontosView({Key? key}) : super(key: key);
+class CuotasView extends StatefulWidget {
+  const CuotasView({Key? key}) : super(key: key);
 
   @override
-  _MontosViewState createState() => _MontosViewState();
+  _CuotasViewState createState() => _CuotasViewState();
 }
 
-class _MontosViewState extends State<MontosView> {
+class _CuotasViewState extends State<CuotasView> {
   int _rowsPerPage = PaginatedDataTable.defaultRowsPerPage;
 
   @override
   void initState() {
     super.initState();
 
-    Provider.of<MontosProvider>(context, listen: false).getMonto();
+    Provider.of<CuotasProvider>(context, listen: false).getCuotas();
   }
 
   @override
   Widget build(BuildContext context) {
-    final montos = Provider.of<MontosProvider>(context).monto;
+    final cuotas = Provider.of<CuotasProvider>(context).cuotas;
 
     return Builder(
       builder: (context) {
@@ -33,16 +33,19 @@ class _MontosViewState extends State<MontosView> {
           child: ListView(
             physics: const ClampingScrollPhysics(),
             children: [
-              Text('Categorias', style: CustomLabels.h1),
+              Text('Cuotas', style: CustomLabels.h1),
               const SizedBox(height: 10),
               PaginatedDataTable(
                 columns: const [
-                  DataColumn(label: Text('Carrera')),
-                   DataColumn(label: Text('ID')),
+                  DataColumn(label: Text('ID')),
+                  DataColumn(label: Text('Motivo')),
+                  DataColumn(label: Text('Monto')),
+                  DataColumn(label: Text('Fecha de registro')),
+                  DataColumn(label: Text('Fecha limite')),
                   DataColumn(label: Text('Acciones')),
                 ],
-                source: MontoDTS(montos, context),
-                header: const Text('Categorias disponibles', maxLines: 2),
+                source: CuotaDTS(cuotas, context),
+                header: const Text('Cuotas disponibles', maxLines: 2),
                 onRowsPerPageChanged: (value) {
                   setState(() {
                     _rowsPerPage = value ?? 10;
@@ -55,7 +58,7 @@ class _MontosViewState extends State<MontosView> {
                       showModalBottomSheet(
                         backgroundColor: Colors.transparent,
                         context: context,
-                        builder: (context) => const MontoModal(),
+                        builder: (context) => const CuotaModal.CuotaModal(),
                       );
                     },
                     style: ElevatedButton.styleFrom(
@@ -64,9 +67,8 @@ class _MontosViewState extends State<MontosView> {
                     child: const Row(
                       children: [
                         Text(
-                          'Crear',
-                          style:
-                              TextStyle(color: Colors.white), 
+                          'Crear Cuota',
+                          style: TextStyle(color: Colors.white),
                         ),
                         Icon(Icons.add_outlined, color: Colors.white),
                       ],

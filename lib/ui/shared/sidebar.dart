@@ -53,9 +53,9 @@ class Sidebar extends StatelessWidget {
           MenuItem(
               text: 'Cuotas',
               icon: Icons.monetization_on_outlined,
-              onPressed: () => navigateTo(Flurorouter.montosRoute),
+              onPressed: () => navigateTo(Flurorouter.cuotasRoute),
               isActive:
-                  sideMenuProvider.currentPage == Flurorouter.montosRoute),
+                  sideMenuProvider.currentPage == Flurorouter.cuotasRoute),
 
           MenuItem(
             text: 'Pagos',
