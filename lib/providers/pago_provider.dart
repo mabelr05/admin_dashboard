@@ -11,7 +11,7 @@ class PagosProvider extends ChangeNotifier {
     try {
       // Realizar solicitud HTTP para obtener los pagos
       final resp = await CafeApi.httpGet('/pagos');
-      
+
       // Convertir la respuesta en un objeto PagosResponse
       final pagosResp = PagosResponse.fromMap(resp);
 
@@ -30,7 +30,8 @@ class PagosProvider extends ChangeNotifier {
   }
 
   // Método para crear un nuevo pago
-  Future newPago(String idEstudiante, String nombreEstudiante, String email, double monto, String comprobante, String idCuota) async {
+  Future newPago(String idEstudiante, String nombreEstudiante, String email,
+      double monto, String comprobante, String idCuota) async {
     final data = {
       'id_estudiante': idEstudiante,
       'nombre_estudiante': nombreEstudiante,
@@ -42,14 +43,14 @@ class PagosProvider extends ChangeNotifier {
 
     try {
       // Realizar solicitud HTTP para crear un nuevo pago
-      final json = await CafeApi.post('/pago', data);
-      
+      final json = await CafeApi.post('/pagos', data);
+
       // Convertir la respuesta en un objeto Pago
       final newPago = Pago.fromMap(json);
 
       // Agregar el nuevo pago a la lista de pagos
       pagos.add(newPago);
-      
+
       // Notificar a los oyentes que se ha creado un nuevo pago
       notifyListeners();
     } catch (e) {
@@ -60,41 +61,40 @@ class PagosProvider extends ChangeNotifier {
 
   // Método para actualizar un pago existente
   Future updatePago(String id, String status, String? motivoRechazo) async {
-  // Crear un mapa para los datos de la solicitud
-  final Map<String, dynamic> data = {'status': status};
+    // Crear un mapa para los datos de la solicitud
+    final Map<String, dynamic> data = {'status': status};
 
-  // Si el motivo de rechazo no es nulo, incluirlo en los datos de la solicitud
-  if (motivoRechazo != null) {
-    data['motivo_rechazo'] = motivoRechazo;
+    // Si el motivo de rechazo no es nulo, incluirlo en los datos de la solicitud
+    if (motivoRechazo != null) {
+      data['motivo_rechazo'] = motivoRechazo;
+    }
+
+    try {
+      // Realizar solicitud HTTP para actualizar el pago
+      await CafeApi.put('/pagos/$id', data);
+
+      // Actualizar la lista de pagos localmente
+      pagos = pagos.map((pago) {
+        if (pago.id != id) return pago;
+
+        pago.status = status;
+        pago.motivoRechazo = motivoRechazo;
+        return pago;
+      }).toList();
+
+      // Notificar a los oyentes que se ha actualizado un pago
+      notifyListeners();
+    } catch (e) {
+      // Capturar y manejar cualquier error que ocurra durante la actualización del pago
+      throw 'Error al actualizar el pago: $e';
+    }
   }
-
-  try {
-    // Realizar solicitud HTTP para actualizar el pago
-    await CafeApi.put('/pago/$id', data);
-
-    // Actualizar la lista de pagos localmente
-    pagos = pagos.map((pago) {
-      if (pago.id != id) return pago;
-
-      pago.status = status;
-      pago.motivoRechazo = motivoRechazo;
-      return pago;
-    }).toList();
-    
-    // Notificar a los oyentes que se ha actualizado un pago
-    notifyListeners();
-  } catch (e) {
-    // Capturar y manejar cualquier error que ocurra durante la actualización del pago
-    throw 'Error al actualizar el pago: $e';
-  }
-}
-
 
   // Método para eliminar un pago existente
   Future deletePago(String id) async {
     try {
       // Realizar solicitud HTTP para eliminar el pago
-      await CafeApi.delete('/pago/$id', {});
+      await CafeApi.delete('/pagos/$id', {});
 
       // Eliminar el pago de la lista de pagos localmente
       pagos.removeWhere((pago) => pago.id == id);

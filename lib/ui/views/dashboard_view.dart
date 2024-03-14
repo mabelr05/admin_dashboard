@@ -21,7 +21,7 @@ class DashboardView extends StatelessWidget {
           Text('Panel', style: CustomLabels.h1),
           const SizedBox(height: 10),
           WhiteCard(title: user.nombre, child: Text(user.correo)),
-          Row(
+          const Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               CardDashboard(cant: '1', description: 'Pagos pendientes'),
@@ -53,7 +53,7 @@ class CardDashboard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       child: Container(
-        padding: EdgeInsets.all(8),
+        padding: const EdgeInsets.all(8),
         height: 200,
         decoration: BoxDecoration(
           borderRadius: const BorderRadius.all(Radius.circular(25)),
@@ -63,7 +63,7 @@ class CardDashboard extends StatelessWidget {
               color: Colors.grey.withOpacity(0.5),
               spreadRadius: 5,
               blurRadius: 7,
-              offset: Offset(0, 3),
+              offset: const Offset(0, 3),
             ),
           ],
         ),

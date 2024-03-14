@@ -25,7 +25,7 @@ class PostModalState extends State<PostModal> {
   Widget build(BuildContext context) {
     final postProvider = Provider.of<PostsProvider>(context, listen: false);
     // Get screen width
-    final screenWidth = MediaQuery.of(context).size.width;
+    //final screenWidth = MediaQuery.of(context).size.width;
 
     return Expanded(
       child: Container(

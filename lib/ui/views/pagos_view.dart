@@ -74,25 +74,25 @@ class _PagosViewState extends State<PagosView> {
                   },
                   rowsPerPage: _rowsPerPage,
                   actions: [
-                    ElevatedButton(
-                      onPressed: () {
-                        showModalBottomSheet(
-                          backgroundColor: Colors.transparent,
-                          context: context,
-                          builder: (context) => const PagoModal.PagoModal(),
-                        );
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.indigo,
-                      ),
-                      child: const Row(
-                        children: [
-                          Text('Crear Pago',
-                              style: TextStyle(color: Colors.white)),
-                          Icon(Icons.add_outlined, color: Colors.white),
-                        ],
-                      ),
-                    )
+                    // ElevatedButton(
+                    //   onPressed: () {
+                    //     showModalBottomSheet(
+                    //       backgroundColor: Colors.transparent,
+                    //       context: context,
+                    //       builder: (context) => const PagoModal.PagoModal(),
+                    //     );
+                    //   },
+                    //   style: ElevatedButton.styleFrom(
+                    //     backgroundColor: Colors.indigo,
+                    //   ),
+                    //   child: const Row(
+                    //     children: [
+                    //       Text('Crear Pago',
+                    //           style: TextStyle(color: Colors.white)),
+                    //       Icon(Icons.add_outlined, color: Colors.white),
+                    //     ],
+                    //   ),
+                    // )
                   ],
                 ),
               ],

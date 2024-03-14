@@ -24,50 +24,53 @@ class PagoDTS extends DataTableSource {
       DataCell(Text(AppFormats.formatCurrency(pago.monto))),
       DataCell(Text(pago.status)),
       DataCell(Text(AppFormats.formatFechaDdMMMyyyyHhMm(pago.fechaPago))),
-      DataCell(Row(
-        children: [
-          IconButton(
-              icon: const Icon(Icons.edit_outlined),
-              onPressed: () {
-                showModalBottomSheet(
-                  backgroundColor: Colors.transparent,
-                  context: context,
-                  builder: (_) => PagoModal.PagoModal(
-                    pago: pago,
-                  ),
-                );
-              }),
-          IconButton(
-              icon: Icon(Icons.delete_outline,
-                  color: Colors.red.withOpacity(0.8)),
-              onPressed: () {
-                final dialog = AlertDialog(
-                  title: const Text('Seguro que quieres borrarlo?'),
-                  content: Text(
-                      'Borrar definitivamente el pago de ${pago.nombreEstudiante}?'),
-                  actions: [
-                    TextButton(
-                      child: const Text('No'),
-                      onPressed: () {
-                        Navigator.of(context).pop();
-                      },
+      DataCell(
+        Row(
+          children: [
+            IconButton(
+                icon: const Icon(Icons.edit_outlined),
+                onPressed: () {
+                  showModalBottomSheet(
+                    backgroundColor: Colors.transparent,
+                    context: context,
+                    builder: (_) => PagoModal.PagoModal(
+                      pago: pago,
                     ),
-                    TextButton(
-                      child: const Text('Si, borrar'),
-                      onPressed: () async {
-                        await Provider.of<PagosProvider>(context, listen: false)
-                            .deletePago(pago.id);
+                  );
+                }),
+            // IconButton(
+            //     icon: Icon(Icons.delete_outline,
+            //         color: Colors.red.withOpacity(0.8)),
+            //     onPressed: () {
+            //       final dialog = AlertDialog(
+            //         title: const Text('Seguro que quieres borrarlo?'),
+            
+            //         content: Text(
+            //             'Borrar definitivamente el pago de ${pago.nombreEstudiante}?'),
+            //         actions: [
+            //           TextButton(
+            //             child: const Text('No'),
+            //             onPressed: () {
+            //               Navigator.of(context).pop();
+            //             },
+            //           ),
+            //           TextButton(
+            //             child: const Text('Si, borrar'),
+            //             onPressed: () async {
+            //               await Provider.of<PagosProvider>(context, listen: false)
+            //                   .deletePago(pago.id);
 
-                        Navigator.of(context).pop();
-                      },
-                    ),
-                  ],
-                );
+            //               Navigator.of(context).pop();
+            //             },
+            //           ),
+            //         ],
+            //       );
 
-                showDialog(context: context, builder: (_) => dialog);
-              }),
-        ],
-      )),
+            //       showDialog(context: context, builder: (_) => dialog);
+            //     }),
+          ],
+        ),
+      ),
     ]);
   }
 
